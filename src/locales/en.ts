@@ -381,7 +381,7 @@ const translations = {
   "religion": "Religion",
   "required_form": "Cannot be empty",
   "reset_password_failed": "Reset password failed",
-  "restore_confirmation": "Restore this data?",
+  "restore_confirmation": "This data will be restored.",
   "retry": "Retry now",
   "retry_feedback": {
     "title": "An Error Occurred",

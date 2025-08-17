@@ -15,6 +15,7 @@ import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
 import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
 import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
 import MasterDataBlogCategory from "@/pages/_masterData/MasterDataBlogCategory";
+import MasterDataJobCategory from "@/pages/_masterData/MasterDataJobCategory";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -138,7 +139,7 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/master-data/job-category",
     backPath: "/master-data",
     titleKey: "master_data_navs.job_category",
-    element: <MasterDataPage />,
+    element: <MasterDataJobCategory />,
   },
   {
     path: "/master-data/employee-status",

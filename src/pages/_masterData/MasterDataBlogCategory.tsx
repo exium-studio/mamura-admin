@@ -111,7 +111,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.coverage_city}`}
+              title={`${l.add} ${l.master_data_navs.blog_category}`}
             />
           </DisclosureHeader>
 
@@ -238,13 +238,13 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.pricing}`}
+              title={`Edit ${l.master_data_navs.blog_category}`}
             />
           </DisclosureHeader>
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="edit_pricing_form" onSubmit={formik.handleSubmit}>
+              <form id="edit_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
                     label={l.name}
@@ -281,7 +281,7 @@ const Edit = (props: any) => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="edit_pricing_form"
+              form="edit_form"
             >
               {l.save}
             </BButton>

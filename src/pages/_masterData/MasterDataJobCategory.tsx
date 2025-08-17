@@ -18,6 +18,8 @@ import ItemHeaderContainer from "@/components/ui-custom/ItemHeaderContainer";
 import SearchInput from "@/components/ui-custom/SearchInput";
 import StringInput from "@/components/ui-custom/StringInput";
 import TableComponent from "@/components/ui-custom/TableComponent";
+import Textarea from "@/components/ui-custom/Textarea";
+import TruncatedText from "@/components/ui-custom/TruncatedText";
 import { Field } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
@@ -45,9 +47,9 @@ const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-city-coverage`, open, onOpen, onClose);
+  useBackOnClose(`add-job-category`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_city_coverage",
+    id: "crud_job_category",
   });
 
   // Contexts
@@ -59,9 +61,11 @@ const Create = () => {
     validateOnChange: false,
     initialValues: {
       name: "",
+      description: "",
     },
     validationSchema: yup.object().shape({
       name: yup.string().required(l.required_form),
+      description: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -70,8 +74,9 @@ const Create = () => {
 
       const payload = {
         name: values?.name,
+        description: values?.description,
       };
-      const url = `/api/mamura/admin/master-data/supported-city`;
+      const url = `/api/mamura/admin/master-data/carrier-category`;
       const config = {
         url,
         method: "POST",
@@ -106,7 +111,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.coverage_city}`}
+              title={`${l.add} ${l.master_data_navs.job_category}`}
             />
           </DisclosureHeader>
 
@@ -124,6 +129,19 @@ const Create = () => {
                         formik.setFieldValue("name", input);
                       }}
                       inputValue={formik.values.name}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.description}
+                    invalid={!!formik.errors.description}
+                    errorText={formik.errors.description as string}
+                  >
+                    <Textarea
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("description", input);
+                      }}
+                      inputValue={formik.values.description}
                     />
                   </Field>
                 </FieldRoot>
@@ -153,9 +171,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-city-coverage`, open, onOpen, onClose);
+  useBackOnClose(`edit-job-category`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_city_coverage",
+    id: "crud_job_category",
   });
 
   // Contexts
@@ -167,9 +185,11 @@ const Edit = (props: any) => {
     validateOnChange: false,
     initialValues: {
       name: "",
+      description: "",
     },
     validationSchema: yup.object().shape({
       name: yup.string().required(l.required_form),
+      description: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -179,8 +199,9 @@ const Edit = (props: any) => {
       const payload = {
         _method: "patch",
         name: values?.name,
+        description: values?.description,
       };
-      const url = `/api/mamura/admin/master-data/supported-city/${initialData?.id}`;
+      const url = `/api/mamura/admin/master-data/carrier-category/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -203,6 +224,7 @@ const Edit = (props: any) => {
   useEffect(() => {
     formik.setValues({
       name: initialData.name,
+      description: initialData.description,
     });
   }, [initialData]);
 
@@ -216,7 +238,7 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.coverage_city}`}
+              title={`Edit ${l.master_data_navs.job_category}`}
             />
           </DisclosureHeader>
 
@@ -234,6 +256,19 @@ const Edit = (props: any) => {
                         formik.setFieldValue("name", input);
                       }}
                       inputValue={formik.values.name}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.description}
+                    invalid={!!formik.errors.description}
+                    errorText={formik.errors.description as string}
+                  >
+                    <Textarea
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("description", input);
+                      }}
+                      inputValue={formik.values.description}
                     />
                   </Field>
                 </FieldRoot>
@@ -266,7 +301,7 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_city_coverage-${dataId}`,
+    id: `crud_job_category-${dataId}`,
   });
 
   // Contexts
@@ -277,6 +312,9 @@ const TableData = (props: any) => {
     {
       th: l.name,
       sortable: true,
+    },
+    {
+      th: l.description,
     },
     {
       th: l.delete_status,
@@ -290,6 +328,10 @@ const TableData = (props: any) => {
         {
           value: item?.name,
           td: item?.name,
+        },
+        {
+          value: item?.description,
+          td: <TruncatedText>{item?.description}</TruncatedText>,
         },
         {
           value: item?.deleted_at,
@@ -323,7 +365,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/supported-city/${rowData.originalData.id}/restore`;
+          const url = `/api/mamura/admin/master-data/carrier-category/${rowData.originalData.id}/restore`;
           const config = {
             url,
             method: "POST",
@@ -360,7 +402,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/supported-city/${rowData.originalData.id}`;
+          const url = `/api/mamura/admin/master-data/carrier-category/${rowData.originalData.id}`;
           const config = {
             url,
             method: "DELETE",
@@ -394,7 +436,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataCityCoveragePage = () => {
+const MasterDataJobCategory = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -403,7 +445,7 @@ const MasterDataCityCoveragePage = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/master-data/supported-city`,
+    url: `/api/mamura/admin/master-data/carrier-category`,
     method: "GET",
     payload: {
       search: filterConfig.search,
@@ -456,4 +498,4 @@ const MasterDataCityCoveragePage = () => {
   );
 };
 
-export default MasterDataCityCoveragePage;
+export default MasterDataJobCategory;

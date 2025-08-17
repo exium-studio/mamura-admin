@@ -381,7 +381,7 @@ const translations = {
   "religion": "Agama",
   "required_form": "Tidak boleh kosong",
   "reset_password_failed": "Reset password gagal",
-  "restore_confirmation": "Pulihkan data ini?",
+  "restore_confirmation": "Data ini akan dikembalikan.",
   "retry": "Muat ulang",
   "retry_feedback": {
     "title": "Terjadi error",

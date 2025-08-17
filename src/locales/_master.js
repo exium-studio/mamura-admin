@@ -368,8 +368,8 @@ export const perma_delete_confirmation = {
   en: "This action cannot be undone, please be careful.",
 };
 export const restore_confirmation = {
-  id: "Pulihkan data ini?",
-  en: "Restore this data?",
+  id: "Data ini akan dikembalikan.",
+  en: "This data will be restored.",
 };
 export const login_form = {
   title: {
