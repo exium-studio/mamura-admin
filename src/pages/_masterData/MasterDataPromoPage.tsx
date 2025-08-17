@@ -77,7 +77,7 @@ const Create = () => {
       description: "",
       internet_speed: undefined as any,
       price: undefined as any,
-      is_recommended: false,
+      is_recommended: undefined as any,
     },
     validationSchema: yup.object().shape({
       pricing_category: yup.array().required(l.required_form),
@@ -660,7 +660,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataPricingPage = () => {
+const MasterDataPromoPage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -722,4 +722,4 @@ const MasterDataPricingPage = () => {
   );
 };
 
-export default MasterDataPricingPage;
+export default MasterDataPromoPage;
