@@ -13,6 +13,7 @@ import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
 import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
 import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
+import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -122,7 +123,7 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/master-data/coverage-province",
     backPath: "/master-data",
     titleKey: "master_data_navs.coverage_province",
-    element: <MasterDataPage />,
+    element: <MasterDataProvinceCoveragePage />,
   },
   {
     path: "/master-data/blog-category",

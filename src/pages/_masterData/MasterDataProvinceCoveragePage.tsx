@@ -45,9 +45,9 @@ const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-city-coverage`, open, onOpen, onClose);
+  useBackOnClose(`add-province-coverage`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_city_coverage",
+    id: "crud_province_coverage",
   });
 
   // Contexts
@@ -153,9 +153,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-city-coverage`, open, onOpen, onClose);
+  useBackOnClose(`edit-province-coverage`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_city_coverage",
+    id: "crud_province_coverage",
   });
 
   // Contexts
@@ -180,7 +180,7 @@ const Edit = (props: any) => {
         _method: "patch",
         name: values?.name,
       };
-      const url = `/api/mamura/admin/master-data/supported-city/${initialData?.id}`;
+      const url = `/api/mamura/admin/master-data/supported-province/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -266,7 +266,7 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_city_coverage-${dataId}`,
+    id: `crud_province_coverage-${dataId}`,
   });
 
   // Contexts
@@ -323,7 +323,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/supported-city/${rowData.originalData.id}/restore`;
+          const url = `/api/mamura/admin/master-data/supported-province/${rowData.originalData.id}/restore`;
           const config = {
             url,
             method: "POST",
@@ -360,7 +360,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/supported-city/${rowData.originalData.id}`;
+          const url = `/api/mamura/admin/master-data/supported-province/${rowData.originalData.id}`;
           const config = {
             url,
             method: "DELETE",
@@ -394,7 +394,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataCityCoveragePage = () => {
+const MasterDataProvinceCoveragePage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -403,7 +403,7 @@ const MasterDataCityCoveragePage = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/master-data/supported-city`,
+    url: `/api/mamura/admin/master-data/supported-province`,
     method: "GET",
     payload: {
       search: filterConfig.search,
@@ -456,4 +456,4 @@ const MasterDataCityCoveragePage = () => {
   );
 };
 
-export default MasterDataCityCoveragePage;
+export default MasterDataProvinceCoveragePage;

@@ -232,7 +232,7 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-promo`, open, onOpen, onClose);
+  useBackOnClose(`edit-promo`, open, onOpen, onClose);
   const { req } = useRequest({
     id: "crud_promo",
   });
