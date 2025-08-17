@@ -969,6 +969,10 @@ export const see_all = {
 };
 
 // Semantic
+export const description = {
+  id: "Deskripsi",
+  en: "Description",
+};
 export const male = {
   id: "Laki-laki",
   en: "Male",

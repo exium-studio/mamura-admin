@@ -110,6 +110,7 @@ const translations = {
   "delete_label": "Delete",
   "delete_status": "Delete status",
   "deleted_image": "Deleted image",
+  "description": "Description",
   "dialy": "Daily",
   "display_settings_helper_text": "These display settings are stored locally on your device and will not be synced with your account.",
   "edge_permissions_settings_link": "Settings → Cookies and site permissions → ",

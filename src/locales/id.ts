@@ -110,6 +110,7 @@ const translations = {
   "delete_label": "Hapus",
   "delete_status": "Status dihapus",
   "deleted_image": "Gambar dihapus",
+  "description": "Deskripsi",
   "dialy": "Harian",
   "display_settings_helper_text": "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
   "edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",

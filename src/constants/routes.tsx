@@ -14,6 +14,7 @@ import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
 import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
 import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
 import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
+import MasterDataBlogCategory from "@/pages/_masterData/MasterDataBlogCategory";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -130,7 +131,7 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/master-data/blog-category",
     backPath: "/master-data",
     titleKey: "master_data_navs.blog_category",
-    element: <MasterDataPage />,
+    element: <MasterDataBlogCategory />,
   },
   {
     path: "/master-data/job-category",

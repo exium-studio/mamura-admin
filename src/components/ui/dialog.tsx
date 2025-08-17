@@ -2,7 +2,7 @@ import useBackOnDefaultPage from "@/hooks/useBackOnDefaultPage";
 import useScreen from "@/hooks/useScreen";
 import back from "@/utils/back";
 import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { CloseButton } from "./close-button";
 
 interface DialogContentProps extends ChakraDialog.ContentProps {
@@ -21,37 +21,51 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       ...rest
     } = props;
 
+    const [isMouseDownInsideContent, setIsMouseDownInsideContent] =
+      useState(false);
+
+    // Refs
+    const contentRef = useRef<HTMLDivElement>(null);
+
     // Utils
     const handleBackOnDefaultPage = useBackOnDefaultPage();
     const { sh } = useScreen();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
-        {backdrop && (
-          <ChakraDialog.Backdrop
-          // bg={"d1"}
-          // backdropFilter={"blur(5px)"}
-          />
-        )}
+        {backdrop && <ChakraDialog.Backdrop />}
         <ChakraDialog.Positioner
           pointerEvents="auto"
-          onClick={() => {
-            back();
-            handleBackOnDefaultPage();
-          }}
           py={4}
+          onMouseDown={(e) => {
+            if (contentRef.current?.contains(e.target as Node)) {
+              setIsMouseDownInsideContent(true);
+            } else {
+              setIsMouseDownInsideContent(false);
+            }
+          }}
+          onMouseUp={(e) => {
+            if (!isMouseDownInsideContent && e.currentTarget === e.target) {
+              // Click langsung di area kosong Positioner
+              back();
+              handleBackOnDefaultPage();
+            }
+            setIsMouseDownInsideContent(false);
+          }}
         >
           <ChakraDialog.Content
-            ref={ref}
+            ref={(node) => {
+              contentRef.current = node;
+              if (typeof ref === "function") ref(node);
+              else if (ref) ref.current = node;
+            }}
             minH={sh < 500 ? "90dvh" : ""}
-            bg={"body"}
-            shadow={"none"}
-            // border={"1px solid {colors.border.subtle}"}
+            bg="body"
+            shadow="none"
             onClick={(e) => {
               e.stopPropagation();
             }}
             {...rest}
-            asChild={false}
           >
             {children}
           </ChakraDialog.Content>
