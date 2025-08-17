@@ -23,6 +23,7 @@ import Textarea from "@/components/ui-custom/Textarea";
 import TruncatedText from "@/components/ui-custom/TruncatedText";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
+import { InputGroup } from "@/components/ui/input-group";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
 import SelectPricingCategory from "@/components/widget/SelectPricingCategory";
@@ -185,12 +186,14 @@ const Create = () => {
                     invalid={!!formik.errors.internet_speed}
                     errorText={formik.errors.internet_speed as string}
                   >
-                    <NumberInput
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("internet_speed", input);
-                      }}
-                      inputValue={formik.values.internet_speed}
-                    />
+                    <InputGroup endElement="Mbps">
+                      <NumberInput
+                        onChangeSetter={(input) => {
+                          formik.setFieldValue("internet_speed", input);
+                        }}
+                        inputValue={formik.values.internet_speed}
+                      />
+                    </InputGroup>
                   </Field>
 
                   <Field
@@ -198,12 +201,14 @@ const Create = () => {
                     invalid={!!formik.errors.price}
                     errorText={formik.errors.price as string}
                   >
-                    <NumberInput
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("price", input);
-                      }}
-                      inputValue={formik.values.price}
-                    />
+                    <InputGroup startElement="Rp">
+                      <NumberInput
+                        onChangeSetter={(input) => {
+                          formik.setFieldValue("price", input);
+                        }}
+                        inputValue={formik.values.price}
+                      />
+                    </InputGroup>
                   </Field>
 
                   <Field
@@ -392,12 +397,14 @@ const Edit = (props: any) => {
                     invalid={!!formik.errors.internet_speed}
                     errorText={formik.errors.internet_speed as string}
                   >
-                    <NumberInput
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("internet_speed", input);
-                      }}
-                      inputValue={formik.values.internet_speed}
-                    />
+                    <InputGroup endElement="Mbps">
+                      <NumberInput
+                        onChangeSetter={(input) => {
+                          formik.setFieldValue("internet_speed", input);
+                        }}
+                        inputValue={formik.values.internet_speed}
+                      />
+                    </InputGroup>
                   </Field>
 
                   <Field
@@ -405,12 +412,14 @@ const Edit = (props: any) => {
                     invalid={!!formik.errors.price}
                     errorText={formik.errors.price as string}
                   >
-                    <NumberInput
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("price", input);
-                      }}
-                      inputValue={formik.values.price}
-                    />
+                    <InputGroup startElement="Rp">
+                      <NumberInput
+                        onChangeSetter={(input) => {
+                          formik.setFieldValue("price", input);
+                        }}
+                        inputValue={formik.values.price}
+                      />
+                    </InputGroup>
                   </Field>
 
                   <Field
