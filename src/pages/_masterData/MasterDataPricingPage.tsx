@@ -2,7 +2,6 @@ import BackButton from "@/components/ui-custom/BackButton";
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
-import DatePickerInput from "@/components/ui-custom/DatePickerInput";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -18,13 +17,15 @@ import ItemContainer from "@/components/ui-custom/ItemContainer";
 import ItemHeaderContainer from "@/components/ui-custom/ItemHeaderContainer";
 import NumberInput from "@/components/ui-custom/NumberInput";
 import SearchInput from "@/components/ui-custom/SearchInput";
+import StringInput from "@/components/ui-custom/StringInput";
 import TableComponent from "@/components/ui-custom/TableComponent";
+import Textarea from "@/components/ui-custom/Textarea";
 import TruncatedText from "@/components/ui-custom/TruncatedText";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
-import { InputGroup } from "@/components/ui/input-group";
+import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
-import SelectAnimalBreed from "@/components/widget/SelectAnimalBreed";
-import SelectAnimalCategory from "@/components/widget/SelectAnimalCategory";
+import SelectPricingCategory from "@/components/widget/SelectPricingCategory";
 import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
@@ -34,19 +35,25 @@ import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import back from "@/utils/back";
 import formatNumber from "@/utils/formatNumber";
-import { FieldsetRoot, HStack, Icon, useDisclosure } from "@chakra-ui/react";
-import { IconPlus } from "@tabler/icons-react";
+import {
+  FieldRoot,
+  FieldsetRoot,
+  HStack,
+  Icon,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { IconCheck, IconPlus, IconX } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-animal`, open, onOpen, onClose);
+  useBackOnClose(`add-pricing`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud-animal",
+    id: "crud_pricing",
     errorMessage: {
       409: {
         DUPLICATE_ANIMAL_CATEGORY_AND_BREED: {
@@ -130,85 +137,7 @@ const Create = () => {
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="add_animal_form" onSubmit={formik.handleSubmit}>
-                <Field
-                  label={l.animal_interface[1]}
-                  invalid={!!formik.errors.animal_category}
-                  errorText={formik.errors.animal_category as string}
-                  mb={4}
-                >
-                  <SelectAnimalCategory
-                    name="animal_category"
-                    onConfirm={(input) => {
-                      formik.setFieldValue("animal_category", input);
-                    }}
-                    inputValue={formik.values.animal_category}
-                  />
-                </Field>
-
-                <Field
-                  label={l.animal_interface[2]}
-                  invalid={!!formik.errors.animal_breed}
-                  errorText={formik.errors.animal_breed as string}
-                  mb={4}
-                >
-                  <SelectAnimalBreed
-                    name="animal_breed"
-                    onConfirm={(input) => {
-                      formik.setFieldValue("animal_breed", input);
-                    }}
-                    inputValue={formik.values.animal_breed}
-                  />
-                </Field>
-
-                <Field
-                  label={l.animal_interface[3]}
-                  invalid={!!formik.errors.average_weight}
-                  errorText={formik.errors.average_weight as string}
-                  mb={4}
-                >
-                  <InputGroup endElement={"kg"}>
-                    <NumberInput
-                      name="average_weight"
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("average_weight", input);
-                      }}
-                      inputValue={formik.values.average_weight}
-                      placeholder="200"
-                    />
-                  </InputGroup>
-                </Field>
-
-                <Field
-                  label={l.animal_interface[4]}
-                  invalid={!!formik.errors.birth_date}
-                  errorText={formik.errors.birth_date as string}
-                  mb={4}
-                >
-                  <DatePickerInput
-                    name="birth_date"
-                    onConfirm={(input) => {
-                      formik.setFieldValue("birth_date", input);
-                    }}
-                    inputValue={formik.values.birth_date}
-                  />
-                </Field>
-
-                <Field
-                  label={l.animal_interface[5]}
-                  invalid={!!formik.errors.stock}
-                  errorText={formik.errors.stock as string}
-                >
-                  <NumberInput
-                    name="stock"
-                    onChangeSetter={(input) => {
-                      formik.setFieldValue("stock", input);
-                    }}
-                    inputValue={formik.values.stock}
-                    placeholder="100"
-                  />
-                </Field>
-              </form>
+              <form id="add_animal_form" onSubmit={formik.handleSubmit}></form>
             </FieldsetRoot>
           </DisclosureBody>
 
@@ -227,6 +156,218 @@ const Create = () => {
     </>
   );
 };
+const Edit = (props: any) => {
+  // Props
+  const { initialData } = props;
+
+  // Hooks
+  const { l } = useLang();
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`edit-pricing`, open, onOpen, onClose);
+  const { req } = useRequest({
+    id: "crud_pricing",
+    errorMessage: {
+      409: {
+        DUPLICATE_ANIMAL_CATEGORY_AND_BREED: {
+          ...l.error_duplicate_animal_category_and_breed_toast,
+        },
+      },
+    },
+  });
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+  const { rt, setRt } = useRenderTrigger();
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: {
+      pricing_category: [
+        {
+          id: initialData.pricing_category.id,
+          label: initialData.pricing_category.name,
+        },
+      ],
+      name: initialData.name,
+      description: initialData.description,
+      internet_speed: initialData.internet_speed,
+      price: initialData.price,
+      is_recommended: initialData.is_recommended,
+    },
+    validationSchema: yup.object().shape({
+      pricing_category: yup.array().required(l.required_form),
+      name: yup.string().required(l.required_form),
+      description: yup.string().required(l.required_form),
+      internet_speed: yup.string().required(l.required_form),
+      price: yup.string().required(l.required_form),
+    }),
+    onSubmit: (values, { resetForm }) => {
+      // console.log(values);
+
+      back();
+
+      const payload = {
+        _method: "patch",
+        pricing_category_id: values.pricing_category[0].id,
+        name: values.name,
+        description: values.description,
+        internet_speed: values.internet_speed,
+        price: values.price,
+        is_recommended: values.is_recommended,
+      };
+      const url = `/api/mamura/admin/pricing/${initialData.id}`;
+      const config = {
+        url,
+        method: "POST",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt(!rt);
+            resetForm();
+          },
+        },
+      });
+    },
+  });
+
+  // Handle initial values
+  useEffect(() => {
+    formik.setValues({
+      pricing_category: [
+        {
+          id: initialData.pricing_category.id,
+          label: initialData.pricing_category.name,
+        },
+      ],
+      name: initialData.name,
+      description: initialData.description,
+      internet_speed: initialData.internet_speed,
+      price: initialData.price,
+      is_recommended: initialData.is_recommended,
+    });
+  }, [initialData]);
+
+  return (
+    <>
+      <MenuItem value="edit" onClick={onOpen}>
+        Edit
+      </MenuItem>
+
+      <DisclosureRoot open={open} lazyLoad size={"xs"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent
+              title={`Edit ${l.master_data_navs.pricing}`}
+            />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            <FieldsetRoot>
+              <form id="edit_pricing_form" onSubmit={formik.handleSubmit}>
+                <FieldRoot gap={4}>
+                  <Field
+                    label={l.pricing_interface.category}
+                    invalid={!!formik.errors.pricing_category}
+                    errorText={formik.errors.pricing_category as string}
+                  >
+                    <SelectPricingCategory
+                      onConfirm={(input) => {
+                        formik.setFieldValue("pricing_category", input);
+                      }}
+                      inputValue={formik.values.pricing_category}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.name}
+                    invalid={!!formik.errors.name}
+                    errorText={formik.errors.name as string}
+                  >
+                    <StringInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("name", input);
+                      }}
+                      inputValue={formik.values.name}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.description}
+                    invalid={!!formik.errors.description}
+                    errorText={formik.errors.description as string}
+                  >
+                    <Textarea
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("description", input);
+                      }}
+                      inputValue={formik.values.description}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.internet_speed}
+                    invalid={!!formik.errors.internet_speed}
+                    errorText={formik.errors.internet_speed as string}
+                  >
+                    <NumberInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("internet_speed", input);
+                      }}
+                      inputValue={formik.values.internet_speed}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.price}
+                    invalid={!!formik.errors.price}
+                    errorText={formik.errors.price as string}
+                  >
+                    <NumberInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("price", input);
+                      }}
+                      inputValue={formik.values.price}
+                    />
+                  </Field>
+
+                  <Field
+                    invalid={!!formik.errors.is_recommended}
+                    errorText={formik.errors.is_recommended as string}
+                  >
+                    <Checkbox
+                      checked={formik.values.is_recommended}
+                      onCheckedChange={(e) =>
+                        formik.setFieldValue("is_recommended", e.checked)
+                      }
+                    >
+                      {l.pricing_interface.is_recommended}
+                    </Checkbox>
+                  </Field>
+                </FieldRoot>
+              </form>
+            </FieldsetRoot>
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <BackButton />
+            <BButton
+              colorPalette={themeConfig?.colorPalette}
+              type="submit"
+              form="edit_pricing_form"
+            >
+              {l.save}
+            </BButton>
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
 
 const TableData = (props: any) => {
   // Props
@@ -237,13 +378,11 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud-pricing-${dataId}`,
+    id: `crud_pricing-${dataId}`,
   });
 
   // Contexts
   const { rt, setRt } = useRenderTrigger();
-  const setAnimalData = useEditAnimalDisclosure((s) => s.setData);
-  const editAnimalOnOpen = useEditAnimalDisclosure((s) => s.onOpen);
 
   // States
   const ths = [
@@ -267,6 +406,13 @@ const TableData = (props: any) => {
       sortable: true,
       wrapperProps: {
         justify: "end",
+      },
+    },
+    {
+      th: l.pricing_interface.is_recommended,
+      sortable: true,
+      wrapperProps: {
+        justify: "center",
       },
     },
     {
@@ -306,6 +452,21 @@ const TableData = (props: any) => {
           },
         },
         {
+          value: item?.is_recommended,
+          dataType: "boolean",
+          td: (
+            <Icon
+              boxSize={5}
+              color={item?.is_recommended ? "green.500" : "fg.subtle"}
+            >
+              {item?.is_recommended ? <IconCheck /> : <IconX />}
+            </Icon>
+          ),
+          wrapperProps: {
+            justify: "center",
+          },
+        },
+        {
           value: item?.description,
           td: <TruncatedText>{item.description}</TruncatedText>,
         },
@@ -324,9 +485,8 @@ const TableData = (props: any) => {
   const rowOptions = [
     {
       label: "Edit",
-      callback: (rowData: any) => {
-        setAnimalData(rowData?.originalData);
-        editAnimalOnOpen();
+      component: (rowData: any) => {
+        return <Edit initialData={rowData.originalData} />;
       },
     },
     {

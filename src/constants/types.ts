@@ -1,4 +1,5 @@
 import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 export type LatLong = {
   lat: number;
@@ -42,6 +43,7 @@ export type Type__TableOptions = (
   | {
       label: string;
       icon?: any;
+      component?: (dataParams: any) => ReactNode;
       callback?: (dataParams: any) => void;
       confirmation?: (dataParams: any) => {
         id: string;

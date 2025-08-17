@@ -219,6 +219,8 @@ const RowOptions = ({
           {rowOptions?.map((option, i) => {
             if (option === "divider") return <MenuSeparator key={i} />;
 
+            if (option?.component) return option.component(rowData);
+
             if (option.confirmation) {
               const disabled =
                 typeof option?.disabled === "boolean"

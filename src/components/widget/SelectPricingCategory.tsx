@@ -5,14 +5,14 @@ import useLang from "@/context/useLang";
 import capsFirstLetterEachWord from "@/utils/capsFirstLetterEachWord";
 
 interface Props extends Interface__Select {}
-const SelectAnimalAqiqah = (props: Props) => {
+const SelectPricingCategory = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
   // Hooks
   const { l } = useLang();
   const { req } = useRequest({
-    id: "select-animals",
+    id: "select-animal-category",
     showLoadingToast: false,
     showSuccessToast: false,
   });
@@ -20,7 +20,7 @@ const SelectAnimalAqiqah = (props: Props) => {
   // Utils
   function fetch(setOptions: any) {
     const config = {
-      url: `/api/piramid/public-request/get-animals-aqiqah`,
+      url: `/api/mamura/public-request/get-pricing-category`,
       method: "get",
     };
 
@@ -30,7 +30,7 @@ const SelectAnimalAqiqah = (props: Props) => {
         onSuccess: (r) => {
           const newOptions = r.data.data.map((item: any) => ({
             id: item.id,
-            label: `${item?.animal_breed?.label} - ${item?.animal_category?.label}`,
+            label: item.name,
           }));
           setOptions(newOptions);
         },
@@ -40,11 +40,11 @@ const SelectAnimalAqiqah = (props: Props) => {
 
   return (
     <SelectInput
-      title={capsFirstLetterEachWord(l.master_data_navs_group.animal)}
+      title={capsFirstLetterEachWord(l.pricing_interface.category)}
       fetch={fetch}
       {...restProps}
     />
   );
 };
 
-export default SelectAnimalAqiqah;
+export default SelectPricingCategory;
