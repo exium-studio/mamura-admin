@@ -163,8 +163,8 @@ const useDataState = <T = any>(props: Props<T>) => {
 
   // Handle initial loading when no url
   useEffect(() => {
-    setInitialLoading(false);
-  }, []);
+    if (!url) setInitialLoading(false);
+  }, [url]);
 
   // Handle initial loading to tru when limit & page changes
   useEffect(() => {
