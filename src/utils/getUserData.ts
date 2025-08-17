@@ -1,4 +1,4 @@
-const getUserFromLocalStorage = () => {
+const getUserData = () => {
   const userData = localStorage.getItem("__user_data");
   if (!userData) {
     return null;
@@ -13,4 +13,4 @@ const getUserFromLocalStorage = () => {
   }
 };
 
-export default getUserFromLocalStorage;
+export default getUserData;

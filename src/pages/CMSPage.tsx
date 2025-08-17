@@ -1,7 +1,25 @@
 import CContainer from "@/components/ui-custom/CContainer";
+import getAuthToken from "@/utils/getAuthToken";
 
 const CMSPage = () => {
-  return <CContainer p={4} gap={8}></CContainer>;
+  const authToken = getAuthToken();
+
+  return (
+    <CContainer flex={1} overflowY={"auto"} p={4} pt={0}>
+      <iframe
+        src={`https://mamura.vercel.app?cms=${authToken}`}
+        style={{
+          position: "absolute",
+          top: "56px",
+          left: 0,
+          width: "100%",
+          height: "calc(100dvh - 56px)",
+          border: 0,
+        }}
+        allowFullScreen
+      />
+    </CContainer>
+  );
 };
 
 export default CMSPage;

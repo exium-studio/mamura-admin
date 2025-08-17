@@ -2,7 +2,7 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useRequest from "@/hooks/useRequest";
-import getUserFromLocalStorage from "@/utils/getUserFromLocalStorage";
+import getUserData from "@/utils/getUserData";
 import {
   FieldRoot,
   PinInput,
@@ -45,7 +45,7 @@ const Step2Section = (props: any) => {
   const { themeConfig } = useThemeConfig();
 
   // States
-  const user = getUserFromLocalStorage();
+  const user = getUserData();
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { otp: [] },
@@ -126,7 +126,7 @@ const Step3Section = (props: any) => {
   const { req } = useRequest({ id: "reset_password" });
 
   // States
-  const user = getUserFromLocalStorage();
+  const user = getUserData();
 
   const formik = useFormik({
     validateOnChange: false,
@@ -214,7 +214,7 @@ const ChangePasswordDisclosureTrigger = (props: Props) => {
   const { themeConfig } = useThemeConfig();
 
   // States
-  const user = getUserFromLocalStorage();
+  const user = getUserData();
   const [otp, setOtp] = useState<string>("");
 
   // Utils
