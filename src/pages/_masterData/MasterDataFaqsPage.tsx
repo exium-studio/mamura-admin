@@ -47,9 +47,9 @@ const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-job-location`, open, onOpen, onClose);
+  useBackOnClose(`add-faq`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_job_location",
+    id: "crud_faq",
   });
 
   // Contexts
@@ -60,12 +60,12 @@ const Create = () => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      name: "",
-      description: "",
+      question: "",
+      answer: "",
     },
     validationSchema: yup.object().shape({
-      name: yup.string().required(l.required_form),
-      description: yup.string().required(l.required_form),
+      question: yup.string().required(l.required_form),
+      answer: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -73,10 +73,10 @@ const Create = () => {
       back();
 
       const payload = {
-        name: values?.name,
-        description: values?.description,
+        question: values?.question,
+        answer: values?.answer,
       };
-      const url = `/api/mamura/admin/master-data/job-location`;
+      const url = `/api/mamura/admin/faq`;
       const config = {
         url,
         method: "POST",
@@ -111,7 +111,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.job_location}`}
+              title={`${l.add} ${l.master_data_navs.faqs}`}
             />
           </DisclosureHeader>
 
@@ -120,28 +120,28 @@ const Create = () => {
               <form id="add_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
-                    label={l.name}
-                    invalid={!!formik.errors.name}
-                    errorText={formik.errors.name as string}
+                    label={l.faqs_interface.question}
+                    invalid={!!formik.errors.question}
+                    errorText={formik.errors.question as string}
                   >
-                    <StringInput
+                    <Textarea
                       onChangeSetter={(input) => {
-                        formik.setFieldValue("name", input);
+                        formik.setFieldValue("question", input);
                       }}
-                      inputValue={formik.values.name}
+                      inputValue={formik.values.question}
                     />
                   </Field>
 
                   <Field
-                    label={l.description}
-                    invalid={!!formik.errors.description}
-                    errorText={formik.errors.description as string}
+                    label={l.faqs_interface.answer}
+                    invalid={!!formik.errors.answer}
+                    errorText={formik.errors.answer as string}
                   >
                     <Textarea
                       onChangeSetter={(input) => {
-                        formik.setFieldValue("description", input);
+                        formik.setFieldValue("answer", input);
                       }}
-                      inputValue={formik.values.description}
+                      inputValue={formik.values.answer}
                     />
                   </Field>
                 </FieldRoot>
@@ -171,9 +171,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-job-location`, open, onOpen, onClose);
+  useBackOnClose(`edit-faq`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_job_location",
+    id: "crud_faq",
   });
 
   // Contexts
@@ -184,12 +184,12 @@ const Edit = (props: any) => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      name: "",
-      description: "",
+      question: "",
+      answer: "",
     },
     validationSchema: yup.object().shape({
-      name: yup.string().required(l.required_form),
-      description: yup.string().required(l.required_form),
+      question: yup.string().required(l.required_form),
+      answer: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -198,10 +198,10 @@ const Edit = (props: any) => {
 
       const payload = {
         _method: "patch",
-        name: values?.name,
-        description: values?.description,
+        question: values?.question,
+        answer: values?.answer,
       };
-      const url = `/api/mamura/admin/master-data/job-location/${initialData?.id}`;
+      const url = `/api/mamura/admin/faq/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -223,8 +223,8 @@ const Edit = (props: any) => {
   // Handle initial values
   useEffect(() => {
     formik.setValues({
-      name: initialData.name,
-      description: initialData.description,
+      question: initialData.question,
+      answer: initialData.answer,
     });
   }, [initialData]);
 
@@ -238,7 +238,7 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.job_location}`}
+              title={`Edit ${l.master_data_navs.faqs}`}
             />
           </DisclosureHeader>
 
@@ -247,28 +247,28 @@ const Edit = (props: any) => {
               <form id="edit_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
-                    label={l.name}
-                    invalid={!!formik.errors.name}
-                    errorText={formik.errors.name as string}
+                    label={l.faqs_interface.question}
+                    invalid={!!formik.errors.question}
+                    errorText={formik.errors.question as string}
                   >
                     <StringInput
                       onChangeSetter={(input) => {
-                        formik.setFieldValue("name", input);
+                        formik.setFieldValue("question", input);
                       }}
-                      inputValue={formik.values.name}
+                      inputValue={formik.values.question}
                     />
                   </Field>
 
                   <Field
-                    label={l.description}
-                    invalid={!!formik.errors.description}
-                    errorText={formik.errors.description as string}
+                    label={l.faqs_interface.answer}
+                    invalid={!!formik.errors.answer}
+                    errorText={formik.errors.answer as string}
                   >
                     <Textarea
                       onChangeSetter={(input) => {
-                        formik.setFieldValue("description", input);
+                        formik.setFieldValue("answer", input);
                       }}
-                      inputValue={formik.values.description}
+                      inputValue={formik.values.answer}
                     />
                   </Field>
                 </FieldRoot>
@@ -301,7 +301,7 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_job_location-${dataId}`,
+    id: `crud_faq-${dataId}`,
   });
 
   // Contexts
@@ -310,11 +310,10 @@ const TableData = (props: any) => {
   // States
   const ths = [
     {
-      th: l.name,
-      sortable: true,
+      th: l.faqs_interface.question,
     },
     {
-      th: l.description,
+      th: l.faqs_interface.answer,
     },
     {
       th: l.delete_status,
@@ -326,12 +325,12 @@ const TableData = (props: any) => {
       originalData: item,
       columnsFormat: [
         {
-          value: item?.name,
-          td: item?.name,
+          value: item?.question,
+          td: <TruncatedText>{item?.question}</TruncatedText>,
         },
         {
-          value: item?.description,
-          td: <TruncatedText>{item?.description}</TruncatedText>,
+          value: item?.answer,
+          td: <TruncatedText>{item?.answer}</TruncatedText>,
         },
         {
           value: item?.deleted_at,
@@ -365,7 +364,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/job-location/${rowData.originalData.id}/restore`;
+          const url = `/api/mamura/admin/faq/${rowData.originalData.id}/restore`;
           const config = {
             url,
             method: "POST",
@@ -402,7 +401,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/job-location/${rowData.originalData.id}`;
+          const url = `/api/mamura/admin/faq/${rowData.originalData.id}`;
           const config = {
             url,
             method: "DELETE",
@@ -445,7 +444,7 @@ const MasterDataFaqsPage = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/master-data/job-location`,
+    url: `/api/mamura/admin/faq`,
     method: "GET",
     payload: {
       search: filterConfig.search,

@@ -1467,3 +1467,13 @@ export const promo_interface = {
     en: "Promo value",
   },
 };
+export const faqs_interface = {
+  question: {
+    id: "Pertanyaan",
+    en: "Question",
+  },
+  answer: {
+    id: "Jawaban",
+    en: "Answer",
+  },
+};

@@ -185,6 +185,10 @@ const translations = {
     "title": "Server connection problem",
     "description": "Unable to connect to the server. Try again later."
   },
+  "faqs_interface": {
+    "question": "Question",
+    "answer": "Answer"
+  },
   "female": "Female",
   "file_dropzone_label": "Drag and drop/click to upload files",
   "firefox_permissions_settings_link": "Preferences → Privacy & Security → Permissions → ",

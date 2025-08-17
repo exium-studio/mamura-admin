@@ -185,6 +185,10 @@ const translations = {
     "title": "Gangguan koneksi ke server",
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
   },
+  "faqs_interface": {
+    "question": "Pertanyaan",
+    "answer": "Jawaban"
+  },
   "female": "Perempuan",
   "file_dropzone_label": "Drag and drop/klik untuk unggah berkas",
   "firefox_permissions_settings_link": "Preferensi → Privasi & Keamanan → Izin → ",

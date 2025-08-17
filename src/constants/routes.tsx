@@ -14,10 +14,11 @@ import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
 import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
 import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
 import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
-import MasterDataBlogCategory from "@/pages/_masterData/MasterDataBlogCategory";
-import MasterDataJobCategory from "@/pages/_masterData/MasterDataJobCategory";
-import MasterDataEmployeeStatus from "@/pages/_masterData/MasterDataEmployeeStatus";
-import MasterDataJobLocation from "@/pages/_masterData/MasterDataJobLocation";
+import MasterDataBlogCategoryPage from "@/pages/_masterData/MasterDataBlogCategoryPage";
+import MasterDataJobCategoryPage from "@/pages/_masterData/MasterDataJobCategoryPage";
+import MasterDataEmployeeStatusPage from "@/pages/_masterData/MasterDataEmployeeStatusPage";
+import MasterDataJobLocationPage from "@/pages/_masterData/MasterDataJobLocationPage";
+import MasterDataFaqsPage from "@/pages/_masterData/MasterDataFaqsPage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -134,34 +135,34 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/master-data/blog-category",
     backPath: "/master-data",
     titleKey: "master_data_navs.blog_category",
-    element: <MasterDataBlogCategory />,
+    element: <MasterDataBlogCategoryPage />,
   },
   {
     path: "/master-data/job-category",
     activePath: "/master-data/job-category",
     backPath: "/master-data",
     titleKey: "master_data_navs.job_category",
-    element: <MasterDataJobCategory />,
+    element: <MasterDataJobCategoryPage />,
   },
   {
     path: "/master-data/employee-status",
     activePath: "/master-data/employee-status",
     backPath: "/master-data",
     titleKey: "master_data_navs.employee_status",
-    element: <MasterDataEmployeeStatus />,
+    element: <MasterDataEmployeeStatusPage />,
   },
   {
     path: "/master-data/job-location",
     activePath: "/master-data/job-location",
     backPath: "/master-data",
     titleKey: "master_data_navs.job_location",
-    element: <MasterDataJobLocation />,
+    element: <MasterDataJobLocationPage />,
   },
   {
     path: "/master-data/faqs",
     activePath: "/master-data/faqs",
     backPath: "/master-data",
     titleKey: "master_data_navs.faqs",
-    element: <MasterDataPage />,
+    element: <MasterDataFaqsPage />,
   },
 ];

@@ -436,7 +436,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataEmployeeStatus = () => {
+const MasterDataEmployeeStatusPage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -498,4 +498,4 @@ const MasterDataEmployeeStatus = () => {
   );
 };
 
-export default MasterDataEmployeeStatus;
+export default MasterDataEmployeeStatusPage;

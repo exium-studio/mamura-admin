@@ -47,9 +47,9 @@ const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-blog-category`, open, onOpen, onClose);
+  useBackOnClose(`add-job-category`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_blog_category",
+    id: "crud_job_category",
   });
 
   // Contexts
@@ -76,7 +76,7 @@ const Create = () => {
         name: values?.name,
         description: values?.description,
       };
-      const url = `/api/mamura/admin/master-data/blog-category`;
+      const url = `/api/mamura/admin/master-data/carrier-category`;
       const config = {
         url,
         method: "POST",
@@ -111,7 +111,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.blog_category}`}
+              title={`${l.add} ${l.master_data_navs.job_category}`}
             />
           </DisclosureHeader>
 
@@ -171,9 +171,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-blog-category`, open, onOpen, onClose);
+  useBackOnClose(`edit-job-category`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_blog_category",
+    id: "crud_job_category",
   });
 
   // Contexts
@@ -201,7 +201,7 @@ const Edit = (props: any) => {
         name: values?.name,
         description: values?.description,
       };
-      const url = `/api/mamura/admin/master-data/blog-category/${initialData?.id}`;
+      const url = `/api/mamura/admin/master-data/carrier-category/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -238,7 +238,7 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.blog_category}`}
+              title={`Edit ${l.master_data_navs.job_category}`}
             />
           </DisclosureHeader>
 
@@ -301,7 +301,7 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_blog_category-${dataId}`,
+    id: `crud_job_category-${dataId}`,
   });
 
   // Contexts
@@ -365,7 +365,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/blog-category/${rowData.originalData.id}/restore`;
+          const url = `/api/mamura/admin/master-data/carrier-category/${rowData.originalData.id}/restore`;
           const config = {
             url,
             method: "POST",
@@ -402,7 +402,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/master-data/blog-category/${rowData.originalData.id}`;
+          const url = `/api/mamura/admin/master-data/carrier-category/${rowData.originalData.id}`;
           const config = {
             url,
             method: "DELETE",
@@ -436,7 +436,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataBlogCategory = () => {
+const MasterDataJobCategoryPage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -445,7 +445,7 @@ const MasterDataBlogCategory = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/master-data/blog-category`,
+    url: `/api/mamura/admin/master-data/carrier-category`,
     method: "GET",
     payload: {
       search: filterConfig.search,
@@ -498,4 +498,4 @@ const MasterDataBlogCategory = () => {
   );
 };
 
-export default MasterDataBlogCategory;
+export default MasterDataJobCategoryPage;
