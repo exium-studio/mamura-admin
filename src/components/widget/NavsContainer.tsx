@@ -146,15 +146,15 @@ const NavList = (props: any) => {
         }
 
         return (
-          <NavLink key={i} align={"center"} to={nav.path}>
-            <Tooltip
-              content={pluck(l, nav.labelKey)}
-              positioning={{ placement: "right" }}
-              contentProps={{ ml: 2 }}
-            >
+          <Tooltip
+            content={pluck(l, nav.labelKey)}
+            positioning={{ placement: "right" }}
+            contentProps={{ ml: 2 }}
+          >
+            <NavLink key={i} align={"center"} to={nav.path}>
               <NavItem nav={nav} active={active} />
-            </Tooltip>
-          </NavLink>
+            </NavLink>
+          </Tooltip>
         );
       })}
     </>
@@ -172,12 +172,12 @@ const NavList2 = (props: any) => {
 
   return (
     <>
-      <NavLink to={"/settings"} align={"center"}>
-        <Tooltip
-          content={l.navs.settings}
-          positioning={{ placement: "right" }}
-          contentProps={{ ml: 2 }}
-        >
+      <Tooltip
+        content={l.navs.settings}
+        positioning={{ placement: "right" }}
+        contentProps={{ ml: 2 }}
+      >
+        <NavLink to={"/settings"} align={"center"}>
           <NavItemContainer
             active={activePath === "/settings"}
             cursor={"pointer"}
@@ -197,17 +197,17 @@ const NavList2 = (props: any) => {
               </HelperText>
             )}
           </NavItemContainer>
-        </Tooltip>
-      </NavLink>
+        </NavLink>
+      </Tooltip>
 
       {!iss && <Separator w={"full"} mb={1} />}
 
-      <NavLink to={"/profile"} align={"center"}>
-        <Tooltip
-          content={l.navs.profile}
-          positioning={{ placement: "right" }}
-          contentProps={{ ml: 2 }}
-        >
+      <Tooltip
+        content={l.navs.profile}
+        positioning={{ placement: "right" }}
+        contentProps={{ ml: 2 }}
+      >
+        <NavLink to={"/profile"} align={"center"}>
           <NavItemContainer active={activePath === "/profile"}>
             <Avatar
               name="Jolitos Kurniawan"
@@ -228,8 +228,8 @@ const NavList2 = (props: any) => {
               </HelperText>
             )}
           </NavItemContainer>
-        </Tooltip>
-      </NavLink>
+        </NavLink>
+      </Tooltip>
     </>
   );
 };
