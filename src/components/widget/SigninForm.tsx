@@ -23,17 +23,17 @@ const SigninForm = () => {
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
   const { themeConfig } = useThemeConfig();
   const { req, loading } = useRequest({
-    id: "login",
+    id: "signin",
     loadingMessage: {
-      ...l.login_loading_toast,
+      ...l.signin_loading_toast,
     },
     successMessage: {
-      ...l.login_success_toast,
+      ...l.signin_success_toast,
     },
     errorMessage: {
       400: {
         WRONG_CREDENTIALS: {
-          ...l.login_wrong_credentials_toast,
+          ...l.signin_wrong_credentials_toast,
         },
       },
     },
