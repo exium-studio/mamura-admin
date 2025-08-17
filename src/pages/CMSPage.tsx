@@ -5,7 +5,7 @@ const CMSPage = () => {
   const authToken = getAuthToken();
 
   return (
-    <CContainer flex={1} overflowY={"auto"} p={4} pt={0}>
+    <CContainer flex={1} p={4} pt={[4, null, 0]}>
       <iframe
         src={`https://mamura.vercel.app?cms=${authToken}`}
         style={{

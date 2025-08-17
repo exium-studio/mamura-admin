@@ -418,7 +418,7 @@ const MasterDataCityCoveragePage = () => {
   };
 
   return (
-    <CContainer flex={1} overflowY={"auto"}>
+    <CContainer flex={1}>
       <ItemContainer flex={1} overflowY={"auto"}>
         <ItemHeaderContainer borderless>
           <HStack py={2} justify={"space-between"} w={"full"}>

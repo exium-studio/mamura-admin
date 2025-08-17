@@ -182,7 +182,7 @@ const CustomerInquiryPage = () => {
   };
 
   return (
-    <CContainer flex={1} overflowY={"auto"} p={4} pt={0}>
+    <CContainer flex={1} p={4} pt={[4, null, 0]}>
       <ItemContainer flex={1} overflowY={"auto"}>
         <ItemHeaderContainer borderless>
           <HStack py={2} justify={"space-between"} w={"full"}>
