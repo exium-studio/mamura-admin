@@ -21,7 +21,6 @@ import TableComponent from "@/components/ui-custom/TableComponent";
 import { Field } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
-import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -264,9 +263,8 @@ const TableData = (props: any) => {
 
   // Hooks
   const { l } = useLang();
-  const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_province_coverage-${dataId}`,
+    id: `crud_province_coverage`,
   });
 
   // Contexts

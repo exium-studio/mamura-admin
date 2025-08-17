@@ -30,7 +30,6 @@ import DeleteStatus from "@/components/widget/DeleteStatus";
 import ExistingFileItem from "@/components/widget/ExistingFIleItem";
 import PromoDisclosureTrigger from "@/components/widget/PromoDisclosureTrigger";
 import StringArratInput from "@/components/widget/StringArrayInput";
-import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -472,9 +471,8 @@ const TableData = (props: any) => {
 
   // Hooks
   const { l } = useLang();
-  const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_promo-${dataId}`,
+    id: `crud_promo`,
   });
 
   // Contexts

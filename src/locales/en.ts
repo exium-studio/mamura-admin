@@ -74,6 +74,14 @@ const translations = {
   "confirm": "Confirm",
   "confirm_password": "Confirm password",
   "current": "Current",
+  "customer_inquiry_interface": {
+    "preferred_package": "Preferred package",
+    "name": "Name",
+    "phone_number": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "message": "Message"
+  },
   "dark_mode_settings_title": "Dark Mode",
   "dark_mode_ui_settings": {
     "label": "Dark mode UI",

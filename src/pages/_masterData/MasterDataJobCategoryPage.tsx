@@ -23,7 +23,6 @@ import TruncatedText from "@/components/ui-custom/TruncatedText";
 import { Field } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
-import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -299,9 +298,8 @@ const TableData = (props: any) => {
 
   // Hooks
   const { l } = useLang();
-  const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_job_category-${dataId}`,
+    id: `crud_job_category`,
   });
 
   // Contexts

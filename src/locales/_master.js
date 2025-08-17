@@ -1481,3 +1481,29 @@ export const faqs_interface = {
     en: "Answer",
   },
 };
+export const customer_inquiry_interface = {
+  preferred_package: {
+    id: "Paket pilihan",
+    en: "Preferred package",
+  },
+  name: {
+    id: "Nama",
+    en: "Name",
+  },
+  phone_number: {
+    id: "Telepon",
+    en: "Phone",
+  },
+  email: {
+    id: "Email",
+    en: "Email",
+  },
+  address: {
+    id: "Alamat",
+    en: "Address",
+  },
+  message: {
+    id: "Pesan",
+    en: "Message",
+  },
+};

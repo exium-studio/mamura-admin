@@ -74,6 +74,14 @@ const translations = {
   "confirm": "Konfirmasi",
   "confirm_password": "Konfirmasi password",
   "current": "Saat ini",
+  "customer_inquiry_interface": {
+    "preferred_package": "Paket pilihan",
+    "name": "Nama",
+    "phone_number": "Telepon",
+    "email": "Email",
+    "address": "Alamat",
+    "message": "Pesan"
+  },
   "dark_mode_settings_title": "Mode Gelap",
   "dark_mode_ui_settings": {
     "label": "UI mode gelap",
