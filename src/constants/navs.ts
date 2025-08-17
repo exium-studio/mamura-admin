@@ -25,8 +25,8 @@ export const NAVS = [
     icon: IconChartArcs,
   },
   {
-    labelKey: "navs.customer_inquiries",
-    path: "/customer-inquiries",
+    labelKey: "navs.customer_inquiry",
+    path: "/customer-inquiry",
     icon: IconContract,
   },
   {
@@ -40,8 +40,8 @@ export const NAVS = [
     icon: IconArticle,
   },
   {
-    labelKey: "navs.career",
-    path: "/career",
+    labelKey: "navs.job_application",
+    path: "/job-application",
     icon: IconBriefcase,
   },
   {

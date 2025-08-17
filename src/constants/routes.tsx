@@ -1,24 +1,28 @@
-import DashboardPage from "@/pages/DashboardPage";
-import MasterDataPage from "@/pages/MasterDataPage";
-import RootPage from "@/pages/RootPage";
-import SettingsPage from "@/pages/SettingsPage";
+import MasterDataBlogCategoryPage from "@/pages/_masterData/MasterDataBlogCategoryPage";
+import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
+import MasterDataEmployeeStatusPage from "@/pages/_masterData/MasterDataEmployeeStatusPage";
+import MasterDataFaqsPage from "@/pages/_masterData/MasterDataFaqsPage";
+import MasterDataJobCategoryPage from "@/pages/_masterData/MasterDataJobCategoryPage";
+import MasterDataJobLocationPage from "@/pages/_masterData/MasterDataJobLocationPage";
+import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
+import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
+import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
 import DisplaySettingsPage from "@/pages/_settings/DisplaySettingsPage";
 import PermissionsSettingsPage from "@/pages/_settings/PermissionsSettingsPage";
 import PrivacyPolictPage from "@/pages/_settings/PrivacyPolictPage";
 import RegionalSettingsPage from "@/pages/_settings/RegionalSettingsPage";
 import ReportProblemPage from "@/pages/_settings/ReportProblemPage";
 import TermsOfServicePage from "@/pages/_settings/TermsOfServicePage";
+import BlogPage from "@/pages/BlogPage";
+import CMSPage from "@/pages/CMSPage";
+import CustomerInquiryPage from "@/pages/CustomerInquiryPage";
+import DashboardPage from "@/pages/DashboardPage";
+import JobApplicationPage from "@/pages/JobApplicationPage";
+import MasterDataPage from "@/pages/MasterDataPage";
+import RootPage from "@/pages/RootPage";
+import SettingsPage from "@/pages/SettingsPage";
 import ProfilePage from "../pages/ProfilePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
-import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
-import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
-import MasterDataCityCoveragePage from "@/pages/_masterData/MasterDataCityCoveragePage";
-import MasterDataProvinceCoveragePage from "@/pages/_masterData/MasterDataProvinceCoveragePage";
-import MasterDataBlogCategoryPage from "@/pages/_masterData/MasterDataBlogCategoryPage";
-import MasterDataJobCategoryPage from "@/pages/_masterData/MasterDataJobCategoryPage";
-import MasterDataEmployeeStatusPage from "@/pages/_masterData/MasterDataEmployeeStatusPage";
-import MasterDataJobLocationPage from "@/pages/_masterData/MasterDataJobLocationPage";
-import MasterDataFaqsPage from "@/pages/_masterData/MasterDataFaqsPage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -34,6 +38,30 @@ export const PRIVATE_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/dashboard",
     titleKey: "navs.dashboard",
     element: <DashboardPage />,
+  },
+  {
+    path: "/customer-inquiry",
+    activePath: "/customer-inquiry",
+    titleKey: "navs.customer_inquiry",
+    element: <CustomerInquiryPage />,
+  },
+  {
+    path: "/cms",
+    activePath: "/cms",
+    titleKey: "navs.cms",
+    element: <CMSPage />,
+  },
+  {
+    path: "/blog",
+    activePath: "/blog",
+    titleKey: "navs.blog",
+    element: <BlogPage />,
+  },
+  {
+    path: "/job-application",
+    activePath: "/job-application",
+    titleKey: "navs.job_application",
+    element: <JobApplicationPage />,
   },
 
   // Master Data

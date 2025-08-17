@@ -294,9 +294,10 @@ const translations = {
   "name": "Name",
   "navs": {
     "dashboard": "Dashboard",
-    "customer_inquiries": "Customer Inquiries",
+    "customer_inquiry": "Customer Inquiries",
     "cms": "CMS",
     "blog": "Blog",
+    "job_application": "Job Application",
     "master_data": "Master Data",
     "settings": "Settings",
     "profile": "Profile"

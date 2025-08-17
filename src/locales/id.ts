@@ -294,9 +294,10 @@ const translations = {
   "name": "Nama",
   "navs": {
     "dashboard": "Dasbor",
-    "customer_inquiries": "Pertanyaan Pelanggan",
+    "customer_inquiry": "Pertanyaan Pelanggan",
     "cms": "CMS",
     "blog": "Blog",
+    "job_application": "Lamaran Pekerjaan",
     "master_data": "Master Data",
     "settings": "Pengaturan",
     "profile": "Profil"

@@ -4,7 +4,7 @@ export const navs = {
     id: "Dasbor",
     en: "Dashboard",
   },
-  customer_inquiries: {
+  customer_inquiry: {
     id: "Pertanyaan Pelanggan",
     en: "Customer Inquiries",
   },
@@ -15,6 +15,10 @@ export const navs = {
   blog: {
     id: "Blog",
     en: "Blog",
+  },
+  job_application: {
+    id: "Lamaran Pekerjaan",
+    en: "Job Application",
   },
   master_data: {
     id: "Master Data",
