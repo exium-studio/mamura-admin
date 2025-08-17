@@ -11,6 +11,7 @@ import TermsOfServicePage from "@/pages/_settings/TermsOfServicePage";
 import ProfilePage from "../pages/ProfilePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import MasterDataPricingPage from "@/pages/_masterData/MasterDataPricingPage";
+import MasterDataPromoPage from "@/pages/_masterData/MasterDataPromoPage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -106,7 +107,7 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/master-data/promo",
     backPath: "/master-data",
     titleKey: "master_data_navs.promo",
-    element: <MasterDataPage />,
+    element: <MasterDataPromoPage />,
   },
   {
     path: "/master-data/coverage-city",

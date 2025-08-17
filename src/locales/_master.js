@@ -127,6 +127,10 @@ export const order_detail = {
 };
 
 // UI
+export const deleted_image = {
+  id: "Gambar dihapus",
+  en: "Deleted image",
+};
 export const new_password = {
   id: "Password baru",
   en: "New password",
@@ -1431,5 +1435,31 @@ export const pricing_interface = {
   is_recommended: {
     id: "Rekomendasi",
     en: "Recommended",
+  },
+};
+export const promo_interface = {
+  image: {
+    id: "Gambar",
+    en: "Image",
+  },
+  name: {
+    id: "Nama",
+    en: "Name",
+  },
+  description: {
+    id: "Deskripsi",
+    en: "Description",
+  },
+  terms: {
+    id: "Syarat dan ketentuan",
+    en: "Terms and conditions",
+  },
+  promo_end: {
+    id: "Akhir Promo",
+    en: "Promo end",
+  },
+  promo_value: {
+    id: "Nilai Promo",
+    en: "Promo value",
   },
 };

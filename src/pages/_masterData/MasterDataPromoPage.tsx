@@ -2,6 +2,7 @@ import BackButton from "@/components/ui-custom/BackButton";
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
+import DatePickerInput from "@/components/ui-custom/DatePickerInput";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -13,20 +14,22 @@ import DisclosureHeaderContent from "@/components/ui-custom/DisclosureHeaderCont
 import FeedbackNoData from "@/components/ui-custom/FeedbackNoData";
 import FeedbackNotFound from "@/components/ui-custom/FeedbackNotFound";
 import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
+import FileInput from "@/components/ui-custom/FileInput";
+import Img from "@/components/ui-custom/Img";
 import ItemContainer from "@/components/ui-custom/ItemContainer";
 import ItemHeaderContainer from "@/components/ui-custom/ItemHeaderContainer";
-import NumberInput from "@/components/ui-custom/NumberInput";
+import P from "@/components/ui-custom/P";
 import SearchInput from "@/components/ui-custom/SearchInput";
 import StringInput from "@/components/ui-custom/StringInput";
 import TableComponent from "@/components/ui-custom/TableComponent";
 import Textarea from "@/components/ui-custom/Textarea";
 import TruncatedText from "@/components/ui-custom/TruncatedText";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
-import { InputGroup } from "@/components/ui/input-group";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
-import SelectPricingCategory from "@/components/widget/SelectPricingCategory";
+import ExistingFileItem from "@/components/widget/ExistingFIleItem";
+import PromoDisclosureTrigger from "@/components/widget/PromoDisclosureTrigger";
+import StringArratInput from "@/components/widget/StringArrayInput";
 import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
@@ -35,7 +38,8 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import back from "@/utils/back";
-import formatNumber from "@/utils/formatNumber";
+import empty from "@/utils/empty";
+import formatDate from "@/utils/formatDate";
 import {
   FieldRoot,
   FieldsetRoot,
@@ -43,25 +47,19 @@ import {
   Icon,
   useDisclosure,
 } from "@chakra-ui/react";
-import { IconCheck, IconPlus, IconX } from "@tabler/icons-react";
+import { IconPlus } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 const Create = () => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-pricing`, open, onOpen, onClose);
+  useBackOnClose(`add-promo`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_pricing",
-    errorMessage: {
-      409: {
-        DUPLICATE_ANIMAL_CATEGORY_AND_BREED: {
-          ...l.error_duplicate_animal_category_and_breed_toast,
-        },
-      },
-    },
+    id: "crud_promo",
   });
 
   // Contexts
@@ -72,34 +70,32 @@ const Create = () => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      pricing_category: undefined as any,
+      image: undefined as any,
       name: "",
       description: "",
-      internet_speed: undefined as any,
-      price: undefined as any,
-      is_recommended: undefined as any,
+      terms: [],
+      promo_end: undefined as any,
     },
     validationSchema: yup.object().shape({
-      pricing_category: yup.array().required(l.required_form),
+      image: yup.array().required(l.required_form),
       name: yup.string().required(l.required_form),
       description: yup.string().required(l.required_form),
-      internet_speed: yup.string().required(l.required_form),
-      price: yup.string().required(l.required_form),
+      terms: yup.array().min(1, l.required_form).required(l.required_form),
+      promo_end: yup.array().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
 
       back();
 
-      const payload = {
-        pricing_category_id: values?.pricing_category?.[0].id,
-        name: values?.name,
-        description: values?.description,
-        internet_speed: values?.internet_speed,
-        price: values?.price,
-        is_recommended: values?.is_recommended,
-      };
-      const url = `/api/mamura/admin/pricing`;
+      const payload = new FormData();
+      if (!empty(values?.image))
+        payload.append("promo_banner_id[]", values?.image?.[0]);
+      payload.append("name", values?.name);
+      payload.append("description", values?.description);
+      payload.append("terms", JSON.stringify(values?.terms));
+      payload.append("promo_end", values?.promo_end?.[0]);
+      const url = `/api/mamura/admin/promo`;
       const config = {
         url,
         method: "POST",
@@ -143,20 +139,23 @@ const Create = () => {
               <form id="add_pricing_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
-                    label={l.pricing_interface.category}
-                    invalid={!!formik.errors.pricing_category}
-                    errorText={formik.errors.pricing_category as string}
+                    label={l.promo_interface.image}
+                    invalid={!!formik.errors.image}
+                    errorText={formik.errors.image as string}
                   >
-                    <SelectPricingCategory
-                      onConfirm={(input) => {
-                        formik.setFieldValue("pricing_category", input);
+                    <FileInput
+                      dropzone
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("image", input);
                       }}
-                      inputValue={formik.values.pricing_category}
+                      inputValue={formik.values.image}
+                      maxFileSize={10}
+                      accept={".png, .jpg, .jpeg"}
                     />
                   </Field>
 
                   <Field
-                    label={l.name}
+                    label={l.promo_interface.name}
                     invalid={!!formik.errors.name}
                     errorText={formik.errors.name as string}
                   >
@@ -169,7 +168,7 @@ const Create = () => {
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.description}
+                    label={l.promo_interface.description}
                     invalid={!!formik.errors.description}
                     errorText={formik.errors.description as string}
                   >
@@ -182,47 +181,29 @@ const Create = () => {
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.internet_speed}
-                    invalid={!!formik.errors.internet_speed}
-                    errorText={formik.errors.internet_speed as string}
+                    label={l.promo_interface.terms}
+                    invalid={!!formik.errors.terms}
+                    errorText={formik.errors.terms as string}
                   >
-                    <InputGroup endElement="Mbps">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("internet_speed", input);
-                        }}
-                        inputValue={formik.values.internet_speed}
-                      />
-                    </InputGroup>
+                    <StringArratInput
+                      onConfirm={(input) => {
+                        formik.setFieldValue("terms", input);
+                      }}
+                      inputValue={formik.values.terms}
+                    />
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.price}
-                    invalid={!!formik.errors.price}
-                    errorText={formik.errors.price as string}
+                    label={l.promo_interface.promo_end}
+                    invalid={!!formik.errors.promo_end}
+                    errorText={formik.errors.promo_end as string}
                   >
-                    <InputGroup startElement="Rp">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("price", input);
-                        }}
-                        inputValue={formik.values.price}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    invalid={!!formik.errors.is_recommended}
-                    errorText={formik.errors.is_recommended as string}
-                  >
-                    <Checkbox
-                      checked={formik.values.is_recommended}
-                      onCheckedChange={(e) =>
-                        formik.setFieldValue("is_recommended", e.checked)
-                      }
-                    >
-                      {l.pricing_interface.is_recommended}
-                    </Checkbox>
+                    <DatePickerInput
+                      onConfirm={(input) => {
+                        formik.setFieldValue("promo_end", input);
+                      }}
+                      inputValue={formik.values.promo_end}
+                    />
                   </Field>
                 </FieldRoot>
               </form>
@@ -251,16 +232,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-pricing`, open, onOpen, onClose);
+  useBackOnClose(`add-promo`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_pricing",
-    errorMessage: {
-      409: {
-        DUPLICATE_ANIMAL_CATEGORY_AND_BREED: {
-          ...l.error_duplicate_animal_category_and_breed_toast,
-        },
-      },
-    },
+    id: "crud_promo",
   });
 
   // Contexts
@@ -268,38 +242,43 @@ const Edit = (props: any) => {
   const { rt, setRt } = useRenderTrigger();
 
   // States
+  const [existingImage, setExistingImage] = useState<any[]>([]);
+  const [deletedImage, setDeletedImage] = useState<any[]>([]);
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      pricing_category: undefined as any,
+      image: undefined as any,
       name: "",
       description: "",
-      internet_speed: undefined as any,
-      price: undefined as any,
-      is_recommended: undefined as any,
+      terms: [],
+      promo_end: undefined as any,
     },
     validationSchema: yup.object().shape({
-      pricing_category: yup.array().required(l.required_form),
+      image: yup.array().required(l.required_form),
       name: yup.string().required(l.required_form),
       description: yup.string().required(l.required_form),
-      internet_speed: yup.string().required(l.required_form),
-      price: yup.string().required(l.required_form),
+      terms: yup.array().min(1, l.required_form).required(l.required_form),
+      promo_end: yup.array().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
 
       back();
 
-      const payload = {
-        _method: "patch",
-        pricing_category_id: values?.pricing_category?.[0].id,
-        name: values?.name,
-        description: values?.description,
-        internet_speed: values?.internet_speed,
-        price: values?.price,
-        is_recommended: values?.is_recommended,
-      };
-      const url = `/api/mamura/admin/pricing/${initialData.id}`;
+      const payload = new FormData();
+      payload.append("_method", "patch");
+      if (!empty(values?.image))
+        payload.append("promo_banner_id[]", values?.image?.[0]);
+      if (!empty(deletedImage))
+        payload.append(
+          "delete_banner_ids",
+          JSON.stringify(deletedImage?.[0]?.id)
+        );
+      payload.append("name", values?.name);
+      payload.append("description", values?.description);
+      payload.append("terms", JSON.stringify(values?.terms));
+      payload.append("promo_end", values?.promo_end?.[0]);
+      const url = `/api/mamura/admin/promo/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -321,18 +300,14 @@ const Edit = (props: any) => {
   // Handle initial values
   useEffect(() => {
     formik.setValues({
-      pricing_category: [
-        {
-          id: initialData.pricing_category.id,
-          label: initialData.pricing_category.name,
-        },
-      ],
-      name: initialData.name,
-      description: initialData.description,
-      internet_speed: initialData.internet_speed,
-      price: initialData.price,
-      is_recommended: initialData.is_recommended,
+      image: initialData?.image,
+      name: initialData?.name,
+      description: initialData?.description,
+      terms: initialData?.terms,
+      promo_end: [initialData?.promo_end],
     });
+
+    setExistingImage(initialData?.image);
   }, [initialData]);
 
   return (
@@ -351,23 +326,75 @@ const Edit = (props: any) => {
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="edit_pricing_form" onSubmit={formik.handleSubmit}>
+              <form id="add_pricing_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
-                    label={l.pricing_interface.category}
-                    invalid={!!formik.errors.pricing_category}
-                    errorText={formik.errors.pricing_category as string}
+                    label={l.promo_interface.image}
+                    invalid={!!formik.errors.image}
+                    errorText={formik.errors.image as string}
                   >
-                    <SelectPricingCategory
-                      onConfirm={(input) => {
-                        formik.setFieldValue("pricing_category", input);
-                      }}
-                      inputValue={formik.values.pricing_category}
-                    />
+                    {!empty(existingImage) && (
+                      <CContainer>
+                        {existingImage?.map((item: any, i: number) => {
+                          return (
+                            <ExistingFileItem
+                              key={i}
+                              data={item}
+                              onDelete={() => {
+                                setExistingImage((prev) =>
+                                  prev.filter((f) => f !== item)
+                                );
+                                setDeletedImage([...deletedImage, item]);
+                              }}
+                            />
+                          );
+                        })}
+                      </CContainer>
+                    )}
+
+                    {empty(existingImage) && (
+                      <FileInput
+                        dropzone
+                        name="image"
+                        onChangeSetter={(input) => {
+                          formik.setFieldValue("image", input);
+                        }}
+                        inputValue={formik.values.image}
+                        maxFileSize={10}
+                        accept={".png, .jpg, .jpeg"}
+                      />
+                    )}
+
+                    {!empty(deletedImage) && (
+                      <CContainer gap={2} mt={2}>
+                        <P color={"fg.muted"}>{l.deleted_image}</P>
+
+                        {deletedImage?.map((item: any, i: number) => {
+                          return (
+                            <ExistingFileItem
+                              key={i}
+                              data={item}
+                              withDeleteButton={false}
+                              withUndobutton
+                              onUndo={() => {
+                                setExistingImage((prev) => [...prev, item]);
+
+                                formik.setFieldValue(
+                                  "deleted_thumbnail",
+                                  deletedImage.filter((f: any) => f !== item)
+                                );
+
+                                formik.setFieldValue("icon", undefined);
+                              }}
+                            />
+                          );
+                        })}
+                      </CContainer>
+                    )}
                   </Field>
 
                   <Field
-                    label={l.name}
+                    label={l.promo_interface.name}
                     invalid={!!formik.errors.name}
                     errorText={formik.errors.name as string}
                   >
@@ -380,7 +407,7 @@ const Edit = (props: any) => {
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.description}
+                    label={l.promo_interface.description}
                     invalid={!!formik.errors.description}
                     errorText={formik.errors.description as string}
                   >
@@ -393,47 +420,29 @@ const Edit = (props: any) => {
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.internet_speed}
-                    invalid={!!formik.errors.internet_speed}
-                    errorText={formik.errors.internet_speed as string}
+                    label={l.promo_interface.terms}
+                    invalid={!!formik.errors.terms}
+                    errorText={formik.errors.terms as string}
                   >
-                    <InputGroup endElement="Mbps">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("internet_speed", input);
-                        }}
-                        inputValue={formik.values.internet_speed}
-                      />
-                    </InputGroup>
+                    <StringArratInput
+                      onConfirm={(input) => {
+                        formik.setFieldValue("terms", input);
+                      }}
+                      inputValue={formik.values.terms}
+                    />
                   </Field>
 
                   <Field
-                    label={l.pricing_interface.price}
-                    invalid={!!formik.errors.price}
-                    errorText={formik.errors.price as string}
+                    label={l.promo_interface.promo_end}
+                    invalid={!!formik.errors.promo_end}
+                    errorText={formik.errors.promo_end as string}
                   >
-                    <InputGroup startElement="Rp">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("price", input);
-                        }}
-                        inputValue={formik.values.price}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    invalid={!!formik.errors.is_recommended}
-                    errorText={formik.errors.is_recommended as string}
-                  >
-                    <Checkbox
-                      checked={formik.values.is_recommended}
-                      onCheckedChange={(e) =>
-                        formik.setFieldValue("is_recommended", e.checked)
-                      }
-                    >
-                      {l.pricing_interface.is_recommended}
-                    </Checkbox>
+                    <DatePickerInput
+                      onConfirm={(input) => {
+                        formik.setFieldValue("promo_end", input);
+                      }}
+                      inputValue={formik.values.promo_end}
+                    />
                   </Field>
                 </FieldRoot>
               </form>
@@ -445,7 +454,7 @@ const Edit = (props: any) => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="edit_pricing_form"
+              form="add_pricing_form"
             >
               {l.save}
             </BButton>
@@ -465,45 +474,37 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_pricing-${dataId}`,
+    id: `crud_promo-${dataId}`,
   });
 
   // Contexts
+  const { themeConfig } = useThemeConfig();
   const { rt, setRt } = useRenderTrigger();
 
   // States
   const ths = [
     {
-      th: l.pricing_interface.category,
-      sortable: true,
-    },
-    {
-      th: l.pricing_interface.name,
-      sortable: true,
-    },
-    {
-      th: l.pricing_interface.internet_speed,
-      sortable: true,
-      wrapperProps: {
-        justify: "end",
-      },
-    },
-    {
-      th: l.pricing_interface.price,
-      sortable: true,
-      wrapperProps: {
-        justify: "end",
-      },
-    },
-    {
-      th: l.pricing_interface.is_recommended,
-      sortable: true,
+      th: l.promo_interface.image,
       wrapperProps: {
         justify: "center",
       },
     },
     {
-      th: l.pricing_interface.description,
+      th: l.promo_interface.name,
+      sortable: true,
+    },
+    {
+      th: l.promo_interface.description,
+    },
+    {
+      th: l.promo_interface.terms,
+      wrapperProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: l.promo_interface.promo_end,
+      sortable: true,
     },
     {
       th: l.delete_status,
@@ -515,48 +516,51 @@ const TableData = (props: any) => {
       originalData: item,
       columnsFormat: [
         {
-          value: item?.pricing_category?.name,
-          td: item?.pricing_category?.name,
-        },
-        {
-          value: item?.name,
-          td: item?.name,
-        },
-        {
-          value: item?.internet_speed,
-          td: `${formatNumber(item?.internet_speed)} Mbps`,
-          wrapperProps: {
-            justify: "end",
-          },
-          dataType: "number",
-        },
-        {
-          value: item?.birth_date,
-          td: `Rp ${formatNumber(item?.price)}`,
-          dataType: "number",
-          wrapperProps: {
-            justify: "end",
-          },
-        },
-        {
-          value: item?.is_recommended,
-          dataType: "boolean",
+          value: item?.image?.[0]?.file_url,
           td: (
-            <Icon
-              boxSize={5}
-              color={item?.is_recommended ? "green.500" : "fg.subtle"}
-            >
-              {item?.is_recommended ? <IconCheck /> : <IconX />}
-            </Icon>
+            <Link to={item?.image?.[0]?.file_url} target="_blank">
+              <Img
+                key={item?.image?.[0]?.file_url}
+                src={item?.image?.[0]?.file_url}
+                objectFit={"cover"}
+                w={"50px"}
+              />
+            </Link>
           ),
           wrapperProps: {
             justify: "center",
           },
         },
         {
-          value: item?.description,
-          td: <TruncatedText>{item.description}</TruncatedText>,
+          value: item?.name,
+          td: item?.name,
         },
+        {
+          value: item?.description,
+          td: <TruncatedText>{item?.description}</TruncatedText>,
+        },
+        {
+          value: item?.terms,
+          td: (
+            <PromoDisclosureTrigger id={`${item?.id}`} promoTerms={item?.terms}>
+              <BButton
+                colorPalette={themeConfig?.colorPalette}
+                variant={"ghost"}
+              >
+                {l.view}
+              </BButton>
+            </PromoDisclosureTrigger>
+          ),
+          wrapperProps: {
+            justify: "center",
+          },
+        },
+        {
+          value: item?.promo_end,
+          td: formatDate(item?.promo_end),
+          dataType: "date",
+        },
+
         {
           value: item?.deleted_at,
           td: item?.deleted_at ? (
@@ -589,7 +593,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/pricing/${rowData.originalData.id}/restore`;
+          const url = `/api/mamura/admin/promo/${rowData.originalData.id}/restore`;
           const config = {
             url,
             method: "POST",
@@ -626,7 +630,7 @@ const TableData = (props: any) => {
         confirmCallback: () => {
           back();
 
-          const url = `/api/mamura/admin/pricing/${rowData.originalData.id}`;
+          const url = `/api/mamura/admin/promo/${rowData.originalData.id}`;
           const config = {
             url,
             method: "DELETE",
@@ -669,7 +673,7 @@ const MasterDataPromoPage = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/pricing`,
+    url: `/api/mamura/admin/promo`,
     method: "GET",
     payload: {
       search: filterConfig.search,

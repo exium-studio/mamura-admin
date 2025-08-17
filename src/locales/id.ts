@@ -109,6 +109,7 @@ const translations = {
   },
   "delete_label": "Hapus",
   "delete_status": "Status dihapus",
+  "deleted_image": "Gambar dihapus",
   "dialy": "Harian",
   "display_settings_helper_text": "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
   "edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
@@ -354,6 +355,14 @@ const translations = {
     "price": "Harga",
     "description": "Deskripsi",
     "is_recommended": "Rekomendasi"
+  },
+  "promo_interface": {
+    "image": "Gambar",
+    "name": "Nama",
+    "description": "Deskripsi",
+    "terms": "Syarat dan ketentuan",
+    "promo_end": "Akhir Promo",
+    "promo_value": "Nilai Promo"
   },
   "qurban_product_interface": {
     "1": "Foto",

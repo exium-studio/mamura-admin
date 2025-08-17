@@ -5,6 +5,8 @@ import BButton from "../ui-custom/BButton";
 import CContainer from "../ui-custom/CContainer";
 import FileIcon from "../ui-custom/FileIcon";
 import P from "../ui-custom/P";
+import { Link } from "react-router-dom";
+import formatBytes from "@/utils/formatBytes";
 
 interface Props extends StackProps {
   data: any;
@@ -25,6 +27,8 @@ const ExistingFileItem = (props: Props) => {
     ...restProps
   } = props;
 
+  // console.log("file", data);
+
   // Contexts
   const { themeConfig } = useThemeConfig();
   return (
@@ -36,37 +40,56 @@ const ExistingFileItem = (props: Props) => {
       border={"1px solid"}
       borderColor={"border.muted"}
       gap={4}
+      justify={"space-between"}
       {...restProps}
     >
-      <FileIcon flexShrink={0} mimeType={data?.file_mime_type} />
+      <Link
+        to={data?.file_url}
+        target="_blank"
+        style={{
+          width: "100%",
+        }}
+      >
+        <HStack gap={4}>
+          <FileIcon flexShrink={0} mimeType={data?.file_mime_type} />
 
-      <CContainer flex={1}>
-        <P lineClamp={1}>{data?.file_name}</P>
-        <P fontSize={"xs"} color={"fg.muted"}>
-          {data?.file_size}
-        </P>
-      </CContainer>
+          <CContainer flex={1}>
+            <P lineClamp={1}>{`${data?.file_name}`}</P>
+            <P fontSize={"xs"} color={"fg.muted"}>
+              {`${formatBytes(data?.file_size)}`}
+            </P>
+          </CContainer>
+        </HStack>
+      </Link>
 
-      {withDeleteButton && (
-        <BButton
-          flexShrink={0}
-          iconButton
-          size={"xs"}
-          variant={"ghost"}
-          colorPalette={"red"}
-          onClick={onDelete}
-        >
-          <Icon>
-            <IconTrash />
-          </Icon>
-        </BButton>
-      )}
+      <HStack justify={"end"}>
+        {withDeleteButton && (
+          <BButton
+            flexShrink={0}
+            iconButton
+            size={"xs"}
+            variant={"ghost"}
+            colorPalette={"gray"}
+            onClick={onDelete}
+          >
+            <Icon boxSize={5}>
+              <IconTrash />
+            </Icon>
+          </BButton>
+        )}
 
-      {withUndobutton && (
-        <BButton flexShrink={0} size={"xs"} onClick={onUndo} variant={"ghost"}>
-          Undo
-        </BButton>
-      )}
+        {withUndobutton && (
+          <BButton
+            flexShrink={0}
+            size={"xs"}
+            onClick={onUndo}
+            variant={"ghost"}
+            colorPalette={"gray"}
+          >
+            Undo
+          </BButton>
+        )}
+      </HStack>
     </HStack>
   );
 };
