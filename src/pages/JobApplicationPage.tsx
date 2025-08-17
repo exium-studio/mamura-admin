@@ -208,7 +208,7 @@ const JobApplicationPage = () => {
   };
 
   return (
-    <CContainer flex={1} p={4} pt={[4, null, 0]}>
+    CContainer flex={1} px={[2, null, 4]} pt={[4, null, 0]} pb={4}>
       <ItemContainer flex={1} overflowY={"auto"}>
         <ItemHeaderContainer borderless>
           <HStack py={2} justify={"space-between"} w={"full"}>
