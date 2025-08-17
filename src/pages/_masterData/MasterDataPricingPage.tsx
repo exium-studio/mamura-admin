@@ -71,18 +71,19 @@ const Create = () => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      animal_category: undefined as any,
-      animal_breed: undefined as any,
-      average_weight: undefined as any,
-      birth_date: undefined as any,
-      stock: undefined as any,
+      pricing_category: undefined as any,
+      name: "",
+      description: "",
+      internet_speed: undefined as any,
+      price: undefined as any,
+      is_recommended: undefined as any,
     },
     validationSchema: yup.object().shape({
-      animal_category: yup.array().required(l.required_form),
-      animal_breed: yup.array().required(l.required_form),
-      average_weight: yup.string().required(l.required_form),
-      birth_date: yup.date().required(l.required_form),
-      stock: yup.string().required(l.required_form),
+      pricing_category: yup.array().required(l.required_form),
+      name: yup.string().required(l.required_form),
+      description: yup.string().required(l.required_form),
+      internet_speed: yup.string().required(l.required_form),
+      price: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -90,13 +91,14 @@ const Create = () => {
       back();
 
       const payload = {
-        animal_category_id: values.animal_category[0].id,
-        animal_breed_id: values.animal_breed[0].id,
-        average_weight: values.average_weight,
-        birth_date: values.birth_date[0],
-        stock: values.stock,
+        pricing_category_id: values?.pricing_category?.[0].id,
+        name: values?.name,
+        description: values?.description,
+        internet_speed: values?.internet_speed,
+        price: values?.price,
+        is_recommended: values?.is_recommended,
       };
-      const url = `/api/piramid/admin/master-data/animals`;
+      const url = `/api/mamura/admin/pricing`;
       const config = {
         url,
         method: "POST",
@@ -131,13 +133,94 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.pricing}`}
+              title={`Edit ${l.master_data_navs.pricing}`}
             />
           </DisclosureHeader>
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="add_animal_form" onSubmit={formik.handleSubmit}></form>
+              <form id="add_pricing_form" onSubmit={formik.handleSubmit}>
+                <FieldRoot gap={4}>
+                  <Field
+                    label={l.pricing_interface.category}
+                    invalid={!!formik.errors.pricing_category}
+                    errorText={formik.errors.pricing_category as string}
+                  >
+                    <SelectPricingCategory
+                      onConfirm={(input) => {
+                        formik.setFieldValue("pricing_category", input);
+                      }}
+                      inputValue={formik.values.pricing_category}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.name}
+                    invalid={!!formik.errors.name}
+                    errorText={formik.errors.name as string}
+                  >
+                    <StringInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("name", input);
+                      }}
+                      inputValue={formik.values.name}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.description}
+                    invalid={!!formik.errors.description}
+                    errorText={formik.errors.description as string}
+                  >
+                    <Textarea
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("description", input);
+                      }}
+                      inputValue={formik.values.description}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.internet_speed}
+                    invalid={!!formik.errors.internet_speed}
+                    errorText={formik.errors.internet_speed as string}
+                  >
+                    <NumberInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("internet_speed", input);
+                      }}
+                      inputValue={formik.values.internet_speed}
+                    />
+                  </Field>
+
+                  <Field
+                    label={l.pricing_interface.price}
+                    invalid={!!formik.errors.price}
+                    errorText={formik.errors.price as string}
+                  >
+                    <NumberInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("price", input);
+                      }}
+                      inputValue={formik.values.price}
+                    />
+                  </Field>
+
+                  <Field
+                    invalid={!!formik.errors.is_recommended}
+                    errorText={formik.errors.is_recommended as string}
+                  >
+                    <Checkbox
+                      checked={formik.values.is_recommended}
+                      onCheckedChange={(e) =>
+                        formik.setFieldValue("is_recommended", e.checked)
+                      }
+                    >
+                      {l.pricing_interface.is_recommended}
+                    </Checkbox>
+                  </Field>
+                </FieldRoot>
+              </form>
             </FieldsetRoot>
           </DisclosureBody>
 
@@ -146,9 +229,9 @@ const Create = () => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="add_animal_form"
+              form="add_pricing_form"
             >
-              {l.add}
+              {l.save}
             </BButton>
           </DisclosureFooter>
         </DisclosureContent>
@@ -183,17 +266,12 @@ const Edit = (props: any) => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      pricing_category: [
-        {
-          id: initialData.pricing_category.id,
-          label: initialData.pricing_category.name,
-        },
-      ],
-      name: initialData.name,
-      description: initialData.description,
-      internet_speed: initialData.internet_speed,
-      price: initialData.price,
-      is_recommended: initialData.is_recommended,
+      pricing_category: undefined as any,
+      name: "",
+      description: "",
+      internet_speed: undefined as any,
+      price: undefined as any,
+      is_recommended: undefined as any,
     },
     validationSchema: yup.object().shape({
       pricing_category: yup.array().required(l.required_form),
@@ -209,12 +287,12 @@ const Edit = (props: any) => {
 
       const payload = {
         _method: "patch",
-        pricing_category_id: values.pricing_category[0].id,
-        name: values.name,
-        description: values.description,
-        internet_speed: values.internet_speed,
-        price: values.price,
-        is_recommended: values.is_recommended,
+        pricing_category_id: values?.pricing_category?.[0].id,
+        name: values?.name,
+        description: values?.description,
+        internet_speed: values?.internet_speed,
+        price: values?.price,
+        is_recommended: values?.is_recommended,
       };
       const url = `/api/mamura/admin/pricing/${initialData.id}`;
       const config = {
