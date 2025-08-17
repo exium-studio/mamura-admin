@@ -1,7 +1,12 @@
 import CContainer from "@/components/ui-custom/CContainer";
+import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import getAuthToken from "@/utils/getAuthToken";
 
 const CMSPage = () => {
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
+  // States
   const authToken = getAuthToken();
 
   return (
@@ -13,7 +18,7 @@ const CMSPage = () => {
           top: "56px",
           left: 0,
           width: "100%",
-          height: "calc(100dvh - 56px)",
+          height: iss ? "calc(100dvh - 56px - 80px)" : "calc(100vh - 56px)",
           border: 0,
         }}
         allowFullScreen
