@@ -206,6 +206,15 @@ const translations = {
   },
   "forgot_password": "Lupa password",
   "get": "Dapatkan",
+  "job_application_interface": {
+    "name": "Nama",
+    "job_category": "Kategori Pekerjaan",
+    "resume": "Resume",
+    "employee_status": "Status karyawan",
+    "job_location": "Lokasi pekerjaan",
+    "phone_number": "Telepon",
+    "email": "Email"
+  },
   "language_settings_title": "Bahasa",
   "last": "Terakhir",
   "location": "Lokasi",

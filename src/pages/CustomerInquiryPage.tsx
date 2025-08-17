@@ -156,7 +156,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataFaqsPage = () => {
+const CustomerInquiryPage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -216,4 +216,4 @@ const MasterDataFaqsPage = () => {
   );
 };
 
-export default MasterDataFaqsPage;
+export default CustomerInquiryPage;

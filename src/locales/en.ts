@@ -206,6 +206,15 @@ const translations = {
   },
   "forgot_password": "Forgot password",
   "get": "Get",
+  "job_application_interface": {
+    "name": "Name",
+    "job_category": "Job Category",
+    "resume": "Resume",
+    "employee_status": "Employee Status",
+    "job_location": "Job Location",
+    "phone_number": "Phone",
+    "email": "Email"
+  },
   "language_settings_title": "Language",
   "last": "Last",
   "location": "Location",

@@ -1507,3 +1507,33 @@ export const customer_inquiry_interface = {
     en: "Message",
   },
 };
+export const job_application_interface = {
+  name: {
+    id: "Nama",
+    en: "Name",
+  },
+  job_category: {
+    id: "Kategori Pekerjaan",
+    en: "Job Category",
+  },
+  resume: {
+    id: "Resume",
+    en: "Resume",
+  },
+  employee_status: {
+    id: "Status karyawan",
+    en: "Employee Status",
+  },
+  job_location: {
+    id: "Lokasi pekerjaan",
+    en: "Job Location",
+  },
+  phone_number: {
+    id: "Telepon",
+    en: "Phone",
+  },
+  email: {
+    id: "Email",
+    en: "Email",
+  },
+};
