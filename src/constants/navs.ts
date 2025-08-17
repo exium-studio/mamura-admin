@@ -5,7 +5,6 @@ import {
   IconCategory,
   IconChartArcs,
   IconContract,
-  IconDatabaseCog,
   IconDeviceDesktop,
   IconHierarchy,
   IconLanguage,
@@ -13,6 +12,7 @@ import {
   IconMapPin,
   IconPercentage,
   IconQuestionMark,
+  IconServerCog,
   IconShieldHalf,
   IconTag,
   IconWorld,
@@ -47,7 +47,7 @@ export const NAVS = [
   {
     labelKey: "navs.master_data",
     path: "/master-data",
-    icon: IconDatabaseCog,
+    icon: IconServerCog,
   },
 ];
 

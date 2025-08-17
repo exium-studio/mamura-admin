@@ -130,13 +130,13 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.pricing}`}
+              title={`${l.add} ${l.master_data_navs.promo}`}
             />
           </DisclosureHeader>
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="add_pricing_form" onSubmit={formik.handleSubmit}>
+              <form id="add_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
                     label={l.promo_interface.image}
@@ -215,7 +215,7 @@ const Create = () => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="add_pricing_form"
+              form="add_form"
             >
               {l.save}
             </BButton>
@@ -320,13 +320,13 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.pricing}`}
+              title={`Edit ${l.master_data_navs.promo}`}
             />
           </DisclosureHeader>
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="add_pricing_form" onSubmit={formik.handleSubmit}>
+              <form id="edit_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
                     label={l.promo_interface.image}
@@ -454,7 +454,7 @@ const Edit = (props: any) => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="add_pricing_form"
+              form="edit_form"
             >
               {l.save}
             </BButton>

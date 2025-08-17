@@ -15,18 +15,12 @@ import FeedbackNotFound from "@/components/ui-custom/FeedbackNotFound";
 import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
 import ItemContainer from "@/components/ui-custom/ItemContainer";
 import ItemHeaderContainer from "@/components/ui-custom/ItemHeaderContainer";
-import NumberInput from "@/components/ui-custom/NumberInput";
 import SearchInput from "@/components/ui-custom/SearchInput";
 import StringInput from "@/components/ui-custom/StringInput";
 import TableComponent from "@/components/ui-custom/TableComponent";
-import Textarea from "@/components/ui-custom/Textarea";
-import TruncatedText from "@/components/ui-custom/TruncatedText";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
-import { InputGroup } from "@/components/ui/input-group";
 import { MenuItem } from "@/components/ui/menu";
 import DeleteStatus from "@/components/widget/DeleteStatus";
-import SelectPricingCategory from "@/components/widget/SelectPricingCategory";
 import useEditAnimalDisclosure from "@/context/useEditAnimalDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
@@ -35,7 +29,6 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import back from "@/utils/back";
-import formatNumber from "@/utils/formatNumber";
 import {
   FieldRoot,
   FieldsetRoot,
@@ -43,7 +36,7 @@ import {
   Icon,
   useDisclosure,
 } from "@chakra-ui/react";
-import { IconCheck, IconPlus, IconX } from "@tabler/icons-react";
+import { IconPlus } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
@@ -54,7 +47,7 @@ const Create = () => {
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(`add-pricing`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_pricing",
+    id: "crud_city_coverage",
   });
 
   // Contexts
@@ -65,19 +58,10 @@ const Create = () => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      pricing_category: undefined as any,
       name: "",
-      description: "",
-      internet_speed: undefined as any,
-      price: undefined as any,
-      is_recommended: false,
     },
     validationSchema: yup.object().shape({
-      pricing_category: yup.array().required(l.required_form),
       name: yup.string().required(l.required_form),
-      description: yup.string().required(l.required_form),
-      internet_speed: yup.string().required(l.required_form),
-      price: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -85,14 +69,9 @@ const Create = () => {
       back();
 
       const payload = {
-        pricing_category_id: values?.pricing_category?.[0].id,
         name: values?.name,
-        description: values?.description,
-        internet_speed: values?.internet_speed,
-        price: values?.price,
-        is_recommended: values?.is_recommended,
       };
-      const url = `/api/mamura/admin/pricing`;
+      const url = `/api/mamura/admin/master-data/supported-city`;
       const config = {
         url,
         method: "POST",
@@ -127,7 +106,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.pricing}`}
+              title={`${l.add} ${l.master_data_navs.coverage_city}`}
             />
           </DisclosureHeader>
 
@@ -135,19 +114,6 @@ const Create = () => {
             <FieldsetRoot>
               <form id="add_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
-                  <Field
-                    label={l.pricing_interface.category}
-                    invalid={!!formik.errors.pricing_category}
-                    errorText={formik.errors.pricing_category as string}
-                  >
-                    <SelectPricingCategory
-                      onConfirm={(input) => {
-                        formik.setFieldValue("pricing_category", input);
-                      }}
-                      inputValue={formik.values.pricing_category}
-                    />
-                  </Field>
-
                   <Field
                     label={l.name}
                     invalid={!!formik.errors.name}
@@ -159,63 +125,6 @@ const Create = () => {
                       }}
                       inputValue={formik.values.name}
                     />
-                  </Field>
-
-                  <Field
-                    label={l.pricing_interface.description}
-                    invalid={!!formik.errors.description}
-                    errorText={formik.errors.description as string}
-                  >
-                    <Textarea
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("description", input);
-                      }}
-                      inputValue={formik.values.description}
-                    />
-                  </Field>
-
-                  <Field
-                    label={l.pricing_interface.internet_speed}
-                    invalid={!!formik.errors.internet_speed}
-                    errorText={formik.errors.internet_speed as string}
-                  >
-                    <InputGroup endElement="Mbps">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("internet_speed", input);
-                        }}
-                        inputValue={formik.values.internet_speed}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    label={l.pricing_interface.price}
-                    invalid={!!formik.errors.price}
-                    errorText={formik.errors.price as string}
-                  >
-                    <InputGroup startElement="Rp">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("price", input);
-                        }}
-                        inputValue={formik.values.price}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    invalid={!!formik.errors.is_recommended}
-                    errorText={formik.errors.is_recommended as string}
-                  >
-                    <Checkbox
-                      checked={formik.values.is_recommended}
-                      onCheckedChange={(e) =>
-                        formik.setFieldValue("is_recommended", e.checked)
-                      }
-                    >
-                      {l.pricing_interface.is_recommended}
-                    </Checkbox>
                   </Field>
                 </FieldRoot>
               </form>
@@ -244,9 +153,9 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`edit-pricing`, open, onOpen, onClose);
+  useBackOnClose(`add-pricing`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_pricing",
+    id: "crud_city_coverage",
   });
 
   // Contexts
@@ -257,19 +166,10 @@ const Edit = (props: any) => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      pricing_category: undefined as any,
       name: "",
-      description: "",
-      internet_speed: undefined as any,
-      price: undefined as any,
-      is_recommended: undefined as any,
     },
     validationSchema: yup.object().shape({
-      pricing_category: yup.array().required(l.required_form),
       name: yup.string().required(l.required_form),
-      description: yup.string().required(l.required_form),
-      internet_speed: yup.string().required(l.required_form),
-      price: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
@@ -278,14 +178,9 @@ const Edit = (props: any) => {
 
       const payload = {
         _method: "patch",
-        pricing_category_id: values?.pricing_category?.[0].id,
         name: values?.name,
-        description: values?.description,
-        internet_speed: values?.internet_speed,
-        price: values?.price,
-        is_recommended: values?.is_recommended,
       };
-      const url = `/api/mamura/admin/pricing/${initialData.id}`;
+      const url = `/api/mamura/admin/master-data/supported-city/${initialData?.id}`;
       const config = {
         url,
         method: "POST",
@@ -307,17 +202,7 @@ const Edit = (props: any) => {
   // Handle initial values
   useEffect(() => {
     formik.setValues({
-      pricing_category: [
-        {
-          id: initialData.pricing_category.id,
-          label: initialData.pricing_category.name,
-        },
-      ],
       name: initialData.name,
-      description: initialData.description,
-      internet_speed: initialData.internet_speed,
-      price: initialData.price,
-      is_recommended: initialData.is_recommended,
     });
   }, [initialData]);
 
@@ -337,21 +222,8 @@ const Edit = (props: any) => {
 
           <DisclosureBody>
             <FieldsetRoot>
-              <form id="edit_form" onSubmit={formik.handleSubmit}>
+              <form id="edit_pricing_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
-                  <Field
-                    label={l.pricing_interface.category}
-                    invalid={!!formik.errors.pricing_category}
-                    errorText={formik.errors.pricing_category as string}
-                  >
-                    <SelectPricingCategory
-                      onConfirm={(input) => {
-                        formik.setFieldValue("pricing_category", input);
-                      }}
-                      inputValue={formik.values.pricing_category}
-                    />
-                  </Field>
-
                   <Field
                     label={l.name}
                     invalid={!!formik.errors.name}
@@ -364,63 +236,6 @@ const Edit = (props: any) => {
                       inputValue={formik.values.name}
                     />
                   </Field>
-
-                  <Field
-                    label={l.pricing_interface.description}
-                    invalid={!!formik.errors.description}
-                    errorText={formik.errors.description as string}
-                  >
-                    <Textarea
-                      onChangeSetter={(input) => {
-                        formik.setFieldValue("description", input);
-                      }}
-                      inputValue={formik.values.description}
-                    />
-                  </Field>
-
-                  <Field
-                    label={l.pricing_interface.internet_speed}
-                    invalid={!!formik.errors.internet_speed}
-                    errorText={formik.errors.internet_speed as string}
-                  >
-                    <InputGroup endElement="Mbps">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("internet_speed", input);
-                        }}
-                        inputValue={formik.values.internet_speed}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    label={l.pricing_interface.price}
-                    invalid={!!formik.errors.price}
-                    errorText={formik.errors.price as string}
-                  >
-                    <InputGroup startElement="Rp">
-                      <NumberInput
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("price", input);
-                        }}
-                        inputValue={formik.values.price}
-                      />
-                    </InputGroup>
-                  </Field>
-
-                  <Field
-                    invalid={!!formik.errors.is_recommended}
-                    errorText={formik.errors.is_recommended as string}
-                  >
-                    <Checkbox
-                      checked={formik.values.is_recommended}
-                      onCheckedChange={(e) =>
-                        formik.setFieldValue("is_recommended", e.checked)
-                      }
-                    >
-                      {l.pricing_interface.is_recommended}
-                    </Checkbox>
-                  </Field>
                 </FieldRoot>
               </form>
             </FieldsetRoot>
@@ -431,7 +246,7 @@ const Edit = (props: any) => {
             <BButton
               colorPalette={themeConfig?.colorPalette}
               type="submit"
-              form="edit_form"
+              form="edit_pricing_form"
             >
               {l.save}
             </BButton>
@@ -451,7 +266,7 @@ const TableData = (props: any) => {
   const { l } = useLang();
   const dataId = useEditAnimalDisclosure((s) => s.data?.id);
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_pricing-${dataId}`,
+    id: `crud_city_coverage-${dataId}`,
   });
 
   // Contexts
@@ -460,36 +275,8 @@ const TableData = (props: any) => {
   // States
   const ths = [
     {
-      th: l.pricing_interface.category,
+      th: l.name,
       sortable: true,
-    },
-    {
-      th: l.pricing_interface.name,
-      sortable: true,
-    },
-    {
-      th: l.pricing_interface.internet_speed,
-      sortable: true,
-      wrapperProps: {
-        justify: "end",
-      },
-    },
-    {
-      th: l.pricing_interface.price,
-      sortable: true,
-      wrapperProps: {
-        justify: "end",
-      },
-    },
-    {
-      th: l.pricing_interface.is_recommended,
-      sortable: true,
-      wrapperProps: {
-        justify: "center",
-      },
-    },
-    {
-      th: l.pricing_interface.description,
     },
     {
       th: l.delete_status,
@@ -501,47 +288,8 @@ const TableData = (props: any) => {
       originalData: item,
       columnsFormat: [
         {
-          value: item?.pricing_category?.name,
-          td: item?.pricing_category?.name,
-        },
-        {
           value: item?.name,
           td: item?.name,
-        },
-        {
-          value: item?.internet_speed,
-          td: `${formatNumber(item?.internet_speed)} Mbps`,
-          wrapperProps: {
-            justify: "end",
-          },
-          dataType: "number",
-        },
-        {
-          value: item?.birth_date,
-          td: `Rp ${formatNumber(item?.price)}`,
-          dataType: "number",
-          wrapperProps: {
-            justify: "end",
-          },
-        },
-        {
-          value: item?.is_recommended,
-          dataType: "boolean",
-          td: (
-            <Icon
-              boxSize={5}
-              color={item?.is_recommended ? "green.500" : "fg.subtle"}
-            >
-              {item?.is_recommended ? <IconCheck /> : <IconX />}
-            </Icon>
-          ),
-          wrapperProps: {
-            justify: "center",
-          },
-        },
-        {
-          value: item?.description,
-          td: <TruncatedText>{item.description}</TruncatedText>,
         },
         {
           value: item?.deleted_at,
@@ -646,7 +394,7 @@ const TableData = (props: any) => {
   );
 };
 
-const MasterDataPricingPage = () => {
+const MasterDataCityCoveragePage = () => {
   // Contexts
   const { rt } = useRenderTrigger();
 
@@ -655,7 +403,7 @@ const MasterDataPricingPage = () => {
     search: "",
   });
   const dataState = useDataState({
-    url: `/api/mamura/admin/pricing`,
+    url: `/api/mamura/admin/master-data/supported-city`,
     method: "GET",
     payload: {
       search: filterConfig.search,
@@ -708,4 +456,4 @@ const MasterDataPricingPage = () => {
   );
 };
 
-export default MasterDataPricingPage;
+export default MasterDataCityCoveragePage;

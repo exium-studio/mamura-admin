@@ -3,7 +3,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import MasterDataNavsContainer from "@/components/widget/MasterDataNavsContainer";
 import useLang from "@/context/useLang";
 import { Icon } from "@chakra-ui/react";
-import { IconDatabaseCog } from "@tabler/icons-react";
+import { IconServerCog } from "@tabler/icons-react";
 
 const MasterDataPage = () => {
   // Hooks
@@ -15,7 +15,7 @@ const MasterDataPage = () => {
         <EmptyState
           icon={
             <Icon>
-              <IconDatabaseCog />
+              <IconServerCog />
             </Icon>
           }
           title={l.master_data_page.title}
