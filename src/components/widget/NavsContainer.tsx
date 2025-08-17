@@ -292,7 +292,7 @@ const NavContainer = (props: any) => {
         fRef={containerRef}
         position={"relative"}
         flex={1}
-        overflowY={"scroll"}
+        overflowY={"auto"}
         className="scrollY"
         overflowX={"clip"}
         bg={"bgContent"}

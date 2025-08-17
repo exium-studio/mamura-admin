@@ -53,7 +53,7 @@ const ExistingFileItem = (props: Props) => {
         <HStack gap={4}>
           <FileIcon flexShrink={0} mimeType={data?.file_mime_type} />
 
-          <CContainer flex={1}>
+          <CContainer flex={1} className={"scrollY"}>
             <P lineClamp={1}>{`${data?.file_name}`}</P>
             <P fontSize={"xs"} color={"fg.muted"}>
               {`${formatBytes(data?.file_size)}`}

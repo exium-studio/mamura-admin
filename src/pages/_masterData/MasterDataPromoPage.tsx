@@ -688,7 +688,7 @@ const MasterDataPromoPage = () => {
   };
 
   return (
-    <CContainer flex={1}>
+    <CContainer flex={1} className={"scrollY"}>
       <ItemContainer flex={1} overflowY={"auto"}>
         <ItemHeaderContainer borderless>
           <HStack py={2} justify={"space-between"} w={"full"}>
