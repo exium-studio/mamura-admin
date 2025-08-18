@@ -47,7 +47,7 @@ const SelectPeriod = (props: any) => {
             <MenuItem
               key={period.id}
               value={period.id}
-              onClick={() => setPeriod(period.id)}
+              onClick={() => setPeriod(period)}
             >
               {capsFirstLetter(pluck(l, period.labelKey) as string)}
             </MenuItem>
