@@ -8,6 +8,7 @@ import P from "@/components/ui-custom/P";
 import StringInput from "@/components/ui-custom/StringInput";
 import Textarea from "@/components/ui-custom/Textarea";
 import { Field } from "@/components/ui/field";
+import BlogPreview from "@/components/widget/BlogPreview";
 import ExistingFileItem from "@/components/widget/ExistingFIleItem";
 import SelectBlogCategory from "@/components/widget/SelectBlogCategory";
 import useLang from "@/context/useLang";
@@ -112,7 +113,13 @@ const Editor = (props: any) => {
   }, []);
 
   return (
-    <CContainer flex={1} pb={4} pt={[4, null, 0]}>
+    <CContainer
+      flex={1}
+      pb={4}
+      px={[2, null, 4]}
+      pt={[4, null, 0]}
+      className="scrollY"
+    >
       <HStack justify={"space-between"} px={[2, null, 4]} pb={4}>
         <CContainer>
           <HStack>
@@ -137,27 +144,33 @@ const Editor = (props: any) => {
         </HStack>
       </HStack>
 
-      <SimpleGrid
-        columns={[1, null, 2]}
-        borderTop={"1px solid"}
-        borderColor={"border.muted"}
-        px={[2, null, 4]}
-        flex={1}
-      >
-        <form id="edit_form">
+      <form id="edit_form">
+        <SimpleGrid
+          columns={[1, null, 2]}
+          flex={1}
+          maxH={[
+            "calc(100dvh - 50px - 80px - 80px)",
+            null,
+            "calc(100dvh - 50px - 80px)",
+          ]}
+          bg={"body"}
+          borderRadius={themeConfig.radii.container}
+          className="scrollY"
+        >
           {/* Basic */}
           <CContainer
             pt={4}
-            pr={4}
-            borderRight={"1px solid"}
-            borderColor={"border.muted"}
+            px={4}
+            borderRight={["none", null, "1px solid {colors.border.muted}"]}
             minH={"full"}
+            className="scrollY"
           >
             <FieldRoot gap={4}>
               <Field
                 label={l.blog_interface.thumbnail}
                 invalid={!!formik.errors.thumbnail}
                 errorText={formik.errors.thumbnail as string}
+                helperText={"Aspect ratio 2:1"}
               >
                 {!empty(existingThumbnail) && (
                   <CContainer>
@@ -270,9 +283,23 @@ const Editor = (props: any) => {
           </CContainer>
 
           {/* Content */}
-          <CContainer minH={"full"}></CContainer>
-        </form>
-      </SimpleGrid>
+          <CContainer
+            minH={"full"}
+            pt={4}
+            px={4}
+            borderTop={["1px solid {colors.border.muted}", null, "none"]}
+            overflowY={"auto"}
+            maxH={[
+              "calc(100dvh - 50px - 80px - 80px)",
+              null,
+              "calc(100dvh - 50px - 80px)",
+            ]}
+            className="scrollY"
+          >
+            <BlogPreview blog={blog} />
+          </CContainer>
+        </SimpleGrid>
+      </form>
     </CContainer>
   );
 };

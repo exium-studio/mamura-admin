@@ -146,6 +146,7 @@ const Create = () => {
                     label={l.blog_interface.thumbnail}
                     invalid={!!formik.errors.thumbnail}
                     errorText={formik.errors.thumbnail as string}
+                    helperText={"Aspect ratio 2:1"}
                   >
                     <FileInput
                       dropzone
