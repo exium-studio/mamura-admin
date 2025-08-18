@@ -342,6 +342,7 @@ const translations = {
   "new_password": "Password baru",
   "next_month": "Bulan ini",
   "next_week": "Minggu ini",
+  "next_year": "Tahun ini",
   "no_auth_toast": {
     "title": "Tidak memiliki autentikasi",
     "description": "Silahkan login dengan akun anda."
@@ -480,6 +481,7 @@ const translations = {
   "theme_settings_title": "Tema",
   "this_month": "Bulan ini",
   "this_week": "Minggu ini",
+  "this_year": "Tahun ini",
   "time_format_settings_title": "Format Waktu",
   "time_picker_default_placeholder": "Pilih waktu...",
   "time_picker_default_title": "Pilih Waktu",

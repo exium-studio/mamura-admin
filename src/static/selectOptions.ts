@@ -11,3 +11,22 @@ export const OPTIONS_GENDER = [
   { id: 1, label: "Male" },
   { id: 2, label: "Female" },
 ];
+
+export const OPTIONS_DASHBOARD_PERIOD = [
+  {
+    id: "today",
+    labelKey: "today",
+  },
+  {
+    id: "this_week",
+    labelKey: "this_week",
+  },
+  {
+    id: "this_month",
+    labelKey: "this_month",
+  },
+  {
+    id: "this_year",
+    labelKey: "this_year",
+  },
+];

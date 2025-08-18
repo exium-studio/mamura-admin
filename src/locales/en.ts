@@ -342,6 +342,7 @@ const translations = {
   "new_password": "New password",
   "next_month": "This month",
   "next_week": "This week",
+  "next_year": "This year",
   "no_auth_toast": {
     "title": "No authentication",
     "description": "Please login with your account."
@@ -480,6 +481,7 @@ const translations = {
   "theme_settings_title": "Theme",
   "this_month": "This month",
   "this_week": "This week",
+  "this_year": "This year",
   "time_format_settings_title": "Time Format",
   "time_picker_default_placeholder": "Select time...",
   "time_picker_default_title": "Select Time",

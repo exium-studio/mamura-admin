@@ -251,6 +251,14 @@ export const next_month = {
   id: "Bulan ini",
   en: "This month",
 };
+export const this_year = {
+  id: "Tahun ini",
+  en: "This year",
+};
+export const next_year = {
+  id: "Tahun ini",
+  en: "This year",
+};
 export const religion = {
   id: "Agama",
   en: "Religion",

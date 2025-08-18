@@ -1,52 +1,131 @@
+import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
 import FeedbackNoData from "@/components/ui-custom/FeedbackNoData";
 import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
 import P from "@/components/ui-custom/P";
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
+import { OPTIONS_DASHBOARD_PERIOD } from "@/static/selectOptions";
+import capsFirstLetter from "@/utils/capsFirstLetter";
 import empty from "@/utils/empty";
-import { HStack } from "@chakra-ui/react";
+import formatNumber from "@/utils/formatNumber";
+import pluck from "@/utils/pluck";
+import { Badge, HStack, Icon } from "@chakra-ui/react";
+import { IconCaretDownFilled } from "@tabler/icons-react";
+import { useState } from "react";
 
+const SelectPeriod = (props: any) => {
+  // Props
+  const { period, setPeriod } = props;
+
+  // Hooks
+  const { l } = useLang();
+
+  return (
+    <MenuRoot>
+      <MenuTrigger asChild>
+        <BButton size={"xs"} variant={"ghost"}>
+          {capsFirstLetter(pluck(l, period.labelKey) as string)}
+
+          <Icon boxSize={4}>
+            <IconCaretDownFilled />
+          </Icon>
+        </BButton>
+      </MenuTrigger>
+
+      <MenuContent>
+        {OPTIONS_DASHBOARD_PERIOD.map((period) => {
+          return (
+            <MenuItem
+              key={period.id}
+              value={period.id}
+              onClick={() => setPeriod(period.id)}
+            >
+              {capsFirstLetter(pluck(l, period.labelKey) as string)}
+            </MenuItem>
+          );
+        })}
+      </MenuContent>
+    </MenuRoot>
+  );
+};
 const StatContainer = (props: any) => {
   // Props
-  const { children } = props;
+  const { title, children, period, setPeriod } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
 
+  // States
+
   return (
     <CContainer
-      p={4}
+      flex={1}
+      p={2}
       borderRadius={themeConfig.radii.component}
       bg={"body"}
       border={"1px solid"}
       borderColor={"border.subtle"}
+      h={"full"}
     >
+      <HStack justify={"space-between"} pl={2}>
+        <P fontWeight={"semibold"}>{title}</P>
+
+        <SelectPeriod period={period} setPeriod={setPeriod} />
+      </HStack>
       {children}
     </CContainer>
   );
 };
+const Stat = (props: any) => {
+  // Props
+  const { stat, period } = props;
 
+  // States
+  const count = `${formatNumber(stat[period.id].count)}`;
+  const yesterday_count = `${formatNumber(stat[period.id].yesterday_count)}`;
+  const percentage_compare_yesterday = `${formatNumber(
+    stat[period.id].percentage_compare_yesterday
+  )}%`;
+
+  return (
+    <CContainer px={2}>
+      <P fontWeight={"bold"} fontSize={"2xl"}>
+        {count}
+      </P>
+
+      <HStack justify={"space-between"}>
+        <P>{yesterday_count}</P>
+
+        <Badge w={"fit"}>{percentage_compare_yesterday}</Badge>
+      </HStack>
+    </CContainer>
+  );
+};
 const SiteViews = () => {
   // States
+  const [period, setPeriod] = useState<any>(OPTIONS_DASHBOARD_PERIOD[0]);
   const { error, initialLoading, data, makeRequest } = useDataState<any>({
-    url: ``,
+    url: `/api/mamura/admin/dashboard/insight/get-count-site-visit`,
     dataResource: false,
   });
   const render = {
-    loading: <ComponentSpinner />,
+    loading: <ComponentSpinner minH={"60px"} />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData title={null} description={null} minH={""} />,
-    loaded: (
-      <>
-        <P fontWeight={"semibold"}>Site Views</P>
-      </>
-    ),
+    loaded: <Stat stat={data} period={period} />,
   };
 
   return (
-    <StatContainer>
+    <StatContainer title={"Site Views"} period={period} setPeriod={setPeriod}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>
@@ -67,6 +146,10 @@ const DashboardPage = () => {
   return (
     <CContainer flex={1} px={[2, null, 4]} pt={[4, null, 0]} pb={4}>
       <HStack wrap={"wrap"} gap={4}>
+        <SiteViews />
+
+        <SiteViews />
+
         <SiteViews />
       </HStack>
     </CContainer>
