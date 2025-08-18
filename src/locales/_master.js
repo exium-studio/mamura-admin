@@ -72,6 +72,10 @@ export const master_data_navs = {
     id: "Kategori Blog",
     en: "Blog Category",
   },
+  job_vacancy: {
+    id: "Lowongan Pekerjaan",
+    en: "Job Vacancy",
+  },
   job_category: {
     id: "Kategori Pekerjaan",
     en: "Job Category",
@@ -125,9 +129,215 @@ export const settings_navs = {
     en: "Privacy Policy",
   },
 };
+
+// Semantic
 export const order_detail = {
   id: "Detail order",
   en: "Order detail",
+};
+export const description = {
+  id: "Deskripsi",
+  en: "Description",
+};
+export const male = {
+  id: "Laki-laki",
+  en: "Male",
+};
+export const female = {
+  id: "Perempuan",
+  en: "Female",
+};
+export const name = {
+  id: "Nama",
+  en: "Name",
+};
+export const animal = {
+  id: "Hewan",
+  en: "Animal",
+};
+export const view = {
+  id: "Lihat",
+  en: "View",
+};
+export const optional = {
+  id: "Opsional",
+  en: "Optional",
+};
+export const camera = {
+  id: "Kamera",
+  en: "Camera",
+};
+export const mic = {
+  id: "Mikrofon",
+  en: "Microphone",
+};
+export const location = {
+  id: "Lokasi",
+  en: "Location",
+};
+export const notifications = {
+  id: "Notifikasi",
+  en: "Notifications",
+};
+export const all = {
+  id: "Semua",
+  en: "All",
+};
+export const show = {
+  id: "Tampilkan",
+  en: "Show",
+};
+export const last = {
+  id: "Terakhir",
+  en: "Last",
+};
+export const retry = {
+  id: "Muat ulang",
+  en: "Retry now",
+};
+export const year = {
+  id: "Tahun",
+  en: "Year",
+};
+export const month = {
+  id: "Bulan",
+  en: "Month",
+};
+export const confirm = {
+  id: "Konfirmasi",
+  en: "Confirm",
+};
+export const select_all = {
+  id: "Pilih semua",
+  en: "Select all",
+};
+export const selected = {
+  id: "Terpilih",
+  en: "Selected",
+};
+export const today = {
+  id: "Hari ini",
+  en: "Today",
+};
+export const tomorrow = {
+  id: "Besok",
+  en: "Tomorrow",
+};
+export const this_week = {
+  id: "Minggu ini",
+  en: "This week",
+};
+export const next_week = {
+  id: "Minggu ini",
+  en: "This week",
+};
+export const this_month = {
+  id: "Bulan ini",
+  en: "This month",
+};
+export const next_month = {
+  id: "Bulan ini",
+  en: "This month",
+};
+export const religion = {
+  id: "Agama",
+  en: "Religion",
+};
+export const get = {
+  id: "Dapatkan",
+  en: "Get",
+};
+export const address = {
+  id: "Alamat",
+  en: "Address",
+};
+export const save = {
+  id: "Simpan",
+  en: "Save",
+};
+export const change = {
+  id: "Ganti",
+  en: "Change",
+};
+export const delete_label = {
+  id: "Hapus",
+  en: "Delete",
+};
+export const empty = {
+  id: "Kosong",
+  en: "Empty",
+};
+export const office = {
+  id: "Kantor",
+  en: "Office",
+};
+export const current = {
+  id: "Saat ini",
+  en: "Current",
+};
+export const timezone = {
+  id: "Zona waktu",
+  en: "Time zone",
+};
+export const open = {
+  id: "Buka",
+  en: "Open",
+};
+export const close = {
+  id: "Tutup",
+  en: "Close",
+};
+export const try_label = {
+  id: "Coba",
+  en: "Try",
+};
+export const ask = {
+  id: "Meminta",
+  en: "Ask",
+};
+export const mark_as_read = {
+  id: "Tandai dibaca semua",
+  en: "Mark all as read",
+};
+export const selected_timezone = {
+  id: "Zona waktu dipilih",
+  en: "Selected time zone",
+};
+export const basemap = {
+  id: "Peta dasar",
+  en: "Basemap",
+};
+export const road = {
+  id: "Jalan",
+  en: "Road",
+};
+export const delete_status = {
+  id: "Status dihapus",
+  en: "Delete status",
+};
+export const add = {
+  id: "Tambah",
+  en: "Add",
+};
+export const transaction = {
+  id: "Transaksi",
+  en: "Transaction",
+};
+export const dialy = {
+  id: "Harian",
+  en: "Daily",
+};
+export const weekly = {
+  id: "Mingguan",
+  en: "Weekly",
+};
+export const monthly = {
+  id: "Bulanan",
+  en: "Monthly",
+};
+export const qualification = {
+  id: "Kualifikasi",
+  en: "Qualification",
 };
 
 // UI
@@ -148,8 +358,8 @@ export const password_not_match = {
   en: "Password does not match",
 };
 export const enter_otp = {
-  id: "Masukkan OTP",
-  en: "Enter OTP",
+  id: "Masukkan OTP yang kami kirim ke email Anda",
+  en: "Enter OTP we sent to your email",
 };
 export const reset_password_failed = {
   id: "Reset password gagal",
@@ -972,208 +1182,6 @@ export const see_all = {
   en: "See all",
 };
 
-// Semantic
-export const description = {
-  id: "Deskripsi",
-  en: "Description",
-};
-export const male = {
-  id: "Laki-laki",
-  en: "Male",
-};
-export const female = {
-  id: "Perempuan",
-  en: "Female",
-};
-export const name = {
-  id: "Nama",
-  en: "Name",
-};
-export const animal = {
-  id: "Hewan",
-  en: "Animal",
-};
-export const view = {
-  id: "Lihat",
-  en: "View",
-};
-export const optional = {
-  id: "Opsional",
-  en: "Optional",
-};
-export const camera = {
-  id: "Kamera",
-  en: "Camera",
-};
-export const mic = {
-  id: "Mikrofon",
-  en: "Microphone",
-};
-export const location = {
-  id: "Lokasi",
-  en: "Location",
-};
-export const notifications = {
-  id: "Notifikasi",
-  en: "Notifications",
-};
-export const all = {
-  id: "Semua",
-  en: "All",
-};
-export const show = {
-  id: "Tampilkan",
-  en: "Show",
-};
-export const last = {
-  id: "Terakhir",
-  en: "Last",
-};
-export const retry = {
-  id: "Muat ulang",
-  en: "Retry now",
-};
-export const year = {
-  id: "Tahun",
-  en: "Year",
-};
-export const month = {
-  id: "Bulan",
-  en: "Month",
-};
-export const confirm = {
-  id: "Konfirmasi",
-  en: "Confirm",
-};
-export const select_all = {
-  id: "Pilih semua",
-  en: "Select all",
-};
-export const selected = {
-  id: "Terpilih",
-  en: "Selected",
-};
-export const today = {
-  id: "Hari ini",
-  en: "Today",
-};
-export const tomorrow = {
-  id: "Besok",
-  en: "Tomorrow",
-};
-export const this_week = {
-  id: "Minggu ini",
-  en: "This week",
-};
-export const next_week = {
-  id: "Minggu ini",
-  en: "This week",
-};
-export const this_month = {
-  id: "Bulan ini",
-  en: "This month",
-};
-export const next_month = {
-  id: "Bulan ini",
-  en: "This month",
-};
-export const religion = {
-  id: "Agama",
-  en: "Religion",
-};
-export const get = {
-  id: "Dapatkan",
-  en: "Get",
-};
-export const address = {
-  id: "Alamat",
-  en: "Address",
-};
-export const save = {
-  id: "Simpan",
-  en: "Save",
-};
-export const change = {
-  id: "Ganti",
-  en: "Change",
-};
-export const delete_label = {
-  id: "Hapus",
-  en: "Delete",
-};
-export const empty = {
-  id: "Kosong",
-  en: "Empty",
-};
-export const office = {
-  id: "Kantor",
-  en: "Office",
-};
-export const current = {
-  id: "Saat ini",
-  en: "Current",
-};
-export const timezone = {
-  id: "Zona waktu",
-  en: "Time zone",
-};
-export const open = {
-  id: "Buka",
-  en: "Open",
-};
-export const close = {
-  id: "Tutup",
-  en: "Close",
-};
-export const try_label = {
-  id: "Coba",
-  en: "Try",
-};
-export const ask = {
-  id: "Meminta",
-  en: "Ask",
-};
-export const mark_as_read = {
-  id: "Tandai dibaca semua",
-  en: "Mark all as read",
-};
-export const selected_timezone = {
-  id: "Zona waktu dipilih",
-  en: "Selected time zone",
-};
-export const basemap = {
-  id: "Peta dasar",
-  en: "Basemap",
-};
-export const road = {
-  id: "Jalan",
-  en: "Road",
-};
-export const delete_status = {
-  id: "Status dihapus",
-  en: "Delete status",
-};
-export const add = {
-  id: "Tambah",
-  en: "Add",
-};
-export const transaction = {
-  id: "Transaksi",
-  en: "Transaction",
-};
-export const dialy = {
-  id: "Harian",
-  en: "Daily",
-};
-export const weekly = {
-  id: "Mingguan",
-  en: "Weekly",
-};
-export const monthly = {
-  id: "Bulanan",
-  en: "Monthly",
-};
-
 // Interfaces Label
 export const animal_interface = {
   1: {
@@ -1535,5 +1543,23 @@ export const job_application_interface = {
   email: {
     id: "Email",
     en: "Email",
+  },
+};
+export const job_vacancy_interface = {
+  job_category: {
+    id: "Kategori Pekerjaan",
+    en: "Job Category",
+  },
+  employee_status: {
+    id: "Status karyawan",
+    en: "Employee Status",
+  },
+  job_location: {
+    id: "Lokasi pekerjaan",
+    en: "Job Location",
+  },
+  qualification: {
+    id: "Kualifikasi",
+    en: "Qualification",
   },
 };

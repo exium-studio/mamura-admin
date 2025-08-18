@@ -6,15 +6,16 @@ import {
   IconChartArcs,
   IconContract,
   IconDeviceDesktop,
+  IconFileCv,
   IconHierarchy,
   IconLanguage,
   IconMap,
-  IconMapPin,
   IconPercentage,
   IconQuestionMark,
   IconServerCog,
   IconShieldHalf,
   IconTag,
+  IconTie,
   IconWorld,
 } from "@tabler/icons-react";
 
@@ -42,7 +43,7 @@ export const NAVS = [
   {
     labelKey: "navs.job_application",
     path: "/job-application",
-    icon: IconBriefcase,
+    icon: IconFileCv,
   },
   {
     labelKey: "navs.master_data",
@@ -70,11 +71,11 @@ export const MASTER_DATA_NAVS = [
         labelKey: "master_data_navs.coverage_city",
         path: "/master-data/coverage-city",
       },
-      {
-        icon: IconMapPin,
-        labelKey: "master_data_navs.coverage_province",
-        path: "/master-data/coverage-province",
-      },
+      // {
+      //   icon: IconMapPin,
+      //   labelKey: "master_data_navs.coverage_province",
+      //   path: "/master-data/coverage-province",
+      // },
     ],
   },
   {
@@ -92,6 +93,11 @@ export const MASTER_DATA_NAVS = [
     list: [
       {
         icon: IconBriefcase,
+        labelKey: "master_data_navs.job_vacancy",
+        path: "/master-data/job-vacancy",
+      },
+      {
+        icon: IconTie,
         labelKey: "master_data_navs.job_category",
         path: "/master-data/job-category",
       },

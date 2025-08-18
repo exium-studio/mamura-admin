@@ -5,7 +5,7 @@ import useLang from "@/context/useLang";
 import capsFirstLetterEachWord from "@/utils/capsFirstLetterEachWord";
 
 interface Props extends Interface__Select {}
-const SelectPricingCategory = (props: Props) => {
+const SelectJobLocation = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
@@ -20,7 +20,7 @@ const SelectPricingCategory = (props: Props) => {
   // Utils
   function fetch(setOptions: any) {
     const config = {
-      url: `/api/mamura/public-request/get-pricing-category`,
+      url: `/api/mamura/public-request/get-job-location`,
       method: "get",
     };
 
@@ -40,12 +40,12 @@ const SelectPricingCategory = (props: Props) => {
 
   return (
     <SelectInput
-      id="select-pricing-category"
-      title={capsFirstLetterEachWord(l.pricing_interface.category)}
+      id="select-job-location"
+      title={capsFirstLetterEachWord(l.job_vacancy_interface.job_category)}
       fetch={fetch}
       {...restProps}
     />
   );
 };
 
-export default SelectPricingCategory;
+export default SelectJobLocation;

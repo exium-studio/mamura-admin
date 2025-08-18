@@ -124,7 +124,7 @@ const translations = {
   "edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
   "email_not_found": "Email tidak ditemukan",
   "empty": "Kosong",
-  "enter_otp": "Masukkan OTP",
+  "enter_otp": "Masukkan OTP yang kami kirim ke email Anda",
   "error_400_toast": {
     "title": "Permintaan tidak valid",
     "description": "Server tidak dapat memproses permintaan karena kesalahan klien."
@@ -215,6 +215,12 @@ const translations = {
     "phone_number": "Telepon",
     "email": "Email"
   },
+  "job_vacancy_interface": {
+    "job_category": "Kategori Pekerjaan",
+    "employee_status": "Status karyawan",
+    "job_location": "Lokasi pekerjaan",
+    "qualification": "Kualifikasi"
+  },
   "language_settings_title": "Bahasa",
   "last": "Terakhir",
   "location": "Lokasi",
@@ -264,6 +270,7 @@ const translations = {
     "coverage_province": "Cakupan Provinsi",
     "coverage_city": "Cakupan Kota",
     "blog_category": "Kategori Blog",
+    "job_vacancy": "Lowongan Pekerjaan",
     "job_category": "Kategori Pekerjaan",
     "employee_status": "Status Karyawan",
     "job_location": "Lokasi Pekerjaan",
@@ -387,6 +394,7 @@ const translations = {
     "promo_end": "Akhir Promo",
     "promo_value": "Nilai Promo"
   },
+  "qualification": "Kualifikasi",
   "qurban_product_interface": {
     "1": "Foto",
     "2": "Nama",

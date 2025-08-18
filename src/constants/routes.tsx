@@ -23,6 +23,7 @@ import RootPage from "@/pages/RootPage";
 import SettingsPage from "@/pages/SettingsPage";
 import ProfilePage from "../pages/ProfilePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
+import MasterDataJobVacancyPage from "@/pages/_masterData/MasterDataJobVacancyPage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -164,6 +165,13 @@ export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
     backPath: "/master-data",
     titleKey: "master_data_navs.blog_category",
     element: <MasterDataBlogCategoryPage />,
+  },
+  {
+    path: "/master-data/job-vacancy",
+    activePath: "/master-data/job-vacancy",
+    backPath: "/master-data",
+    titleKey: "master_data_navs.job_vacancy",
+    element: <MasterDataJobVacancyPage />,
   },
   {
     path: "/master-data/job-category",

@@ -124,7 +124,7 @@ const translations = {
   "edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
   "email_not_found": "Email not found",
   "empty": "Empty",
-  "enter_otp": "Enter OTP",
+  "enter_otp": "Enter OTP we sent to your email",
   "error_400_toast": {
     "title": "Bad request",
     "description": "The server could not process the request due to client error."
@@ -215,6 +215,12 @@ const translations = {
     "phone_number": "Phone",
     "email": "Email"
   },
+  "job_vacancy_interface": {
+    "job_category": "Job Category",
+    "employee_status": "Employee Status",
+    "job_location": "Job Location",
+    "qualification": "Qualification"
+  },
   "language_settings_title": "Language",
   "last": "Last",
   "location": "Location",
@@ -264,6 +270,7 @@ const translations = {
     "coverage_province": "Coverage Province",
     "coverage_city": "Coverage City",
     "blog_category": "Blog Category",
+    "job_vacancy": "Job Vacancy",
     "job_category": "Job Category",
     "employee_status": "Employee Status",
     "job_location": "Job Location",
@@ -387,6 +394,7 @@ const translations = {
     "promo_end": "Promo end",
     "promo_value": "Promo value"
   },
+  "qualification": "Qualification",
   "qurban_product_interface": {
     "1": "Photo",
     "2": "Name",
