@@ -141,6 +141,68 @@ const SiteViews = () => {
     </StatContainer>
   );
 };
+const BlogViews = () => {
+  // States
+  const [period, setPeriod] = useState<any>(OPTIONS_DASHBOARD_PERIOD[0]);
+  const { error, initialLoading, data, makeRequest } = useDataState<any>({
+    url: `/api/mamura/admin/dashboard/insight/get-count-blog-visit`,
+    dataResource: false,
+  });
+  const render = {
+    loading: <ComponentSpinner minH={"60px"} />,
+    error: <FeedbackRetry onRetry={makeRequest} />,
+    empty: <FeedbackNoData title={null} description={null} minH={""} />,
+    loaded: <Stat stat={data} period={period} />,
+  };
+
+  return (
+    <StatContainer title={"Blog Views"} period={period} setPeriod={setPeriod}>
+      {initialLoading && render.loading}
+      {!initialLoading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && render.loaded}
+              {(!data || empty(data)) && render.empty}
+            </>
+          )}
+        </>
+      )}
+    </StatContainer>
+  );
+};
+const JobApplied = () => {
+  // States
+  const [period, setPeriod] = useState<any>(OPTIONS_DASHBOARD_PERIOD[0]);
+  const { error, initialLoading, data, makeRequest } = useDataState<any>({
+    url: `/api/mamura/admin/dashboard/insight/get-count-job-application`,
+    dataResource: false,
+  });
+  const render = {
+    loading: <ComponentSpinner minH={"60px"} />,
+    error: <FeedbackRetry onRetry={makeRequest} />,
+    empty: <FeedbackNoData title={null} description={null} minH={""} />,
+    loaded: <Stat stat={data} period={period} />,
+  };
+
+  return (
+    <StatContainer title={"Job Applied"} period={period} setPeriod={setPeriod}>
+      {initialLoading && render.loading}
+      {!initialLoading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && render.loaded}
+              {(!data || empty(data)) && render.empty}
+            </>
+          )}
+        </>
+      )}
+    </StatContainer>
+  );
+};
 
 const DashboardPage = () => {
   return (
@@ -148,9 +210,9 @@ const DashboardPage = () => {
       <HStack wrap={"wrap"} gap={4}>
         <SiteViews />
 
-        <SiteViews />
+        <BlogViews />
 
-        <SiteViews />
+        <JobApplied />
       </HStack>
     </CContainer>
   );
