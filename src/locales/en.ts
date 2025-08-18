@@ -63,6 +63,7 @@ const translations = {
     "description": "Description",
     "content": "Content"
   },
+  "blog_views": "Views",
   "camera": "Camera",
   "camera_fail_toast": {
     "title": "Failed to access camera",
@@ -231,6 +232,7 @@ const translations = {
   },
   "language_settings_title": "Language",
   "last": "Last",
+  "last_updated": "Last updated",
   "location": "Location",
   "location_address_fail_toast": {
     "title": "Failed to get address",
@@ -329,6 +331,7 @@ const translations = {
     "customer_inquiry": "Customer Inquiries",
     "cms": "CMS",
     "blog": "Blog",
+    "blog_editor": "Blog Editor",
     "job_application": "Job Application",
     "master_data": "Master Data",
     "settings": "Settings",

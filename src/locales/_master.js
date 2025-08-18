@@ -16,6 +16,10 @@ export const navs = {
     id: "Blog",
     en: "Blog",
   },
+  blog_editor: {
+    id: "Blog Editor",
+    en: "Blog Editor",
+  },
   job_application: {
     id: "Lamaran Pekerjaan",
     en: "Job Application",
@@ -131,6 +135,14 @@ export const settings_navs = {
 };
 
 // Semantic
+export const last_updated = {
+  id: "Terakhir diperbarui",
+  en: "Last updated",
+};
+export const blog_views = {
+  id: "Dilihat",
+  en: "Views",
+};
 export const order_detail = {
   id: "Detail order",
   en: "Order detail",

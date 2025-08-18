@@ -63,6 +63,7 @@ const translations = {
     "description": "Deskripsi",
     "content": "Konten"
   },
+  "blog_views": "Dilihat",
   "camera": "Kamera",
   "camera_fail_toast": {
     "title": "Gagal mengakses kamera",
@@ -231,6 +232,7 @@ const translations = {
   },
   "language_settings_title": "Bahasa",
   "last": "Terakhir",
+  "last_updated": "Terakhir diperbarui",
   "location": "Lokasi",
   "location_address_fail_toast": {
     "title": "Gagal mendapatkan alamat",
@@ -329,6 +331,7 @@ const translations = {
     "customer_inquiry": "Pertanyaan Pelanggan",
     "cms": "CMS",
     "blog": "Blog",
+    "blog_editor": "Blog Editor",
     "job_application": "Lamaran Pekerjaan",
     "master_data": "Master Data",
     "settings": "Pengaturan",

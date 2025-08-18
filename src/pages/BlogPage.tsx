@@ -330,7 +330,7 @@ const TableData = (props: any) => {
           <MenuItem
             value="edit"
             onClick={() => {
-              navigate(`blog-editor/${rowData.id}`);
+              navigate(`/blog/editor/${rowData.originalData.id}`);
             }}
           >
             Edit

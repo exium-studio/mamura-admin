@@ -377,13 +377,9 @@ const Edit = (props: any) => {
                               withUndobutton
                               onUndo={() => {
                                 setExistingImage((prev) => [...prev, item]);
-
-                                formik.setFieldValue(
-                                  "deleted_thumbnail",
+                                setDeletedImage(
                                   deletedImage.filter((f: any) => f !== item)
                                 );
-
-                                formik.setFieldValue("icon", undefined);
                               }}
                             />
                           );

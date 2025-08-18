@@ -161,15 +161,15 @@ const useDataState = <T = any>(props: Props<T>) => {
     setLimit(initialLimit);
   }, [initialLimit]);
 
-  // Handle initial loading when no url
-  useEffect(() => {
-    if (!url) setInitialLoading(false);
-  }, [url]);
-
   // Handle initial loading to tru when limit & page changes
   useEffect(() => {
     setInitialLoading(true);
   }, [limit, page]);
+
+  // Handle initial loading when no url
+  useEffect(() => {
+    if (!url) setInitialLoading(false);
+  }, [url]);
 
   return {
     makeRequest,

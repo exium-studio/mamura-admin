@@ -24,6 +24,7 @@ import SettingsPage from "@/pages/SettingsPage";
 import ProfilePage from "../pages/ProfilePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import MasterDataJobVacancyPage from "@/pages/_masterData/MasterDataJobVacancyPage";
+import BlogEditorPage from "@/pages/BlogEditorPage";
 
 export const ROUTES: Interface__Route[] = [
   {
@@ -57,6 +58,12 @@ export const PRIVATE_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/blog",
     titleKey: "navs.blog",
     element: <BlogPage />,
+  },
+  {
+    path: "/blog/editor/:blogId",
+    activePath: "/blog",
+    titleKey: "navs.blog_editor",
+    element: <BlogEditorPage />,
   },
   {
     path: "/job-application",
