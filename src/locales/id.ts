@@ -270,7 +270,7 @@ const translations = {
     "coverage_province": "Cakupan Provinsi",
     "coverage_city": "Cakupan Kota",
     "blog_category": "Kategori Blog",
-    "job_vacancy": "Lowongan Pekerjaan",
+    "job_vacancy": "Karir",
     "job_category": "Kategori Pekerjaan",
     "employee_status": "Status Karyawan",
     "job_location": "Lokasi Pekerjaan",

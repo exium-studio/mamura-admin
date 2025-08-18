@@ -92,12 +92,12 @@ export const MASTER_DATA_NAVS = [
     groupLabelKey: "master_data_navs_group.career",
     list: [
       {
-        icon: IconBriefcase,
+        icon: IconTie,
         labelKey: "master_data_navs.job_vacancy",
         path: "/master-data/job-vacancy",
       },
       {
-        icon: IconTie,
+        icon: IconBriefcase,
         labelKey: "master_data_navs.job_category",
         path: "/master-data/job-category",
       },

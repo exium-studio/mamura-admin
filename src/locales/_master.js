@@ -73,8 +73,8 @@ export const master_data_navs = {
     en: "Blog Category",
   },
   job_vacancy: {
-    id: "Lowongan Pekerjaan",
-    en: "Job Vacancy",
+    id: "Karir",
+    en: "Career",
   },
   job_category: {
     id: "Kategori Pekerjaan",

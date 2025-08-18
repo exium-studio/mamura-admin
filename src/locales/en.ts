@@ -270,7 +270,7 @@ const translations = {
     "coverage_province": "Coverage Province",
     "coverage_city": "Coverage City",
     "blog_category": "Blog Category",
-    "job_vacancy": "Job Vacancy",
+    "job_vacancy": "Career",
     "job_category": "Job Category",
     "employee_status": "Employee Status",
     "job_location": "Job Location",
