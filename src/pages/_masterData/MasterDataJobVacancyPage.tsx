@@ -118,7 +118,7 @@ const Create = () => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.job_category}`}
+              title={`${l.add} ${l.master_data_navs.job_vacancy}`}
             />
           </DisclosureHeader>
 
@@ -294,7 +294,7 @@ const Edit = (props: any) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={`Edit ${l.master_data_navs.job_category}`}
+              title={`Edit ${l.master_data_navs.job_vacancy}`}
             />
           </DisclosureHeader>
 

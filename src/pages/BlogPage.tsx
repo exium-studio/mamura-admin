@@ -56,7 +56,7 @@ const Create = () => {
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(`add-blog`, open, onOpen, onClose);
   const { req } = useRequest({
-    id: "crud_job_vacancy",
+    id: "crud_blog",
   });
 
   // Contexts
@@ -134,9 +134,7 @@ const Create = () => {
       <DisclosureRoot open={open} lazyLoad size={"xs"}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent
-              title={`${l.add} ${l.master_data_navs.job_category}`}
-            />
+            <DisclosureHeaderContent title={`${l.add} Blog`} />
           </DisclosureHeader>
 
           <DisclosureBody>
@@ -240,7 +238,7 @@ const TableData = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { req, loading: deleteLoading } = useRequest({
-    id: `crud_job_vacancy`,
+    id: `crud_blog`,
   });
   const navigate = useNavigate();
 
