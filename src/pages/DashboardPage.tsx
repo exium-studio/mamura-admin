@@ -232,7 +232,13 @@ const JobApplied = () => {
 
 const DashboardPage = () => {
   return (
-    <CContainer flex={1} px={[2, null, 4]} pt={[4, null, 0]} pb={4}>
+    <CContainer
+      flex={1}
+      px={[2, null, 4]}
+      pt={[4, null, 0]}
+      pb={4}
+      className={"scrollY"}
+    >
       <HStack wrap={"wrap"} gap={4}>
         <SiteViews />
 

@@ -463,7 +463,7 @@ const MasterDataEmployeeStatusPage = () => {
     <CContainer flex={1} className={"scrollY"}>
       <ItemContainer flex={1} overflowY={"auto"}>
         <ItemHeaderContainer borderless>
-          <HStack py={2} justify={"space-between"} w={"full"}>
+          <HStack justify={"space-between"} w={"full"}>
             <SearchInput
               onChangeSetter={(input) => {
                 setFilterConfig({
