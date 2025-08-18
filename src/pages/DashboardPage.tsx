@@ -79,7 +79,8 @@ const StatContainer = (props: any) => {
       bg={"body"}
       border={"1px solid"}
       borderColor={"border.subtle"}
-      h={"full"}
+      h={"120px"}
+      justify={"space-between"}
     >
       <HStack justify={"space-between"} pl={2}>
         <P fontWeight={"semibold"}>{title}</P>
@@ -239,6 +240,8 @@ const DashboardPage = () => {
 
         <JobApplied />
       </HStack>
+
+      <HStack wrap={"wrap"} gap={4}></HStack>
     </CContainer>
   );
 };
