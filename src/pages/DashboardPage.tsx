@@ -19,7 +19,12 @@ import empty from "@/utils/empty";
 import formatNumber from "@/utils/formatNumber";
 import pluck from "@/utils/pluck";
 import { Badge, HStack, Icon } from "@chakra-ui/react";
-import { IconCaretDownFilled } from "@tabler/icons-react";
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconCaretDownFilled,
+  IconEqual,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 const SelectPeriod = (props: any) => {
@@ -35,7 +40,7 @@ const SelectPeriod = (props: any) => {
         <BButton size={"xs"} variant={"ghost"}>
           {capsFirstLetter(pluck(l, period.labelKey) as string)}
 
-          <Icon boxSize={4}>
+          <Icon boxSize={4} color={"fg.subtle"}>
             <IconCaretDownFilled />
           </Icon>
         </BButton>
@@ -91,21 +96,41 @@ const Stat = (props: any) => {
 
   // States
   const count = `${formatNumber(stat[period.id].count)}`;
-  const yesterday_count = `${formatNumber(stat[period.id].yesterday_count)}`;
-  const percentage_compare_yesterday = `${formatNumber(
-    stat[period.id].percentage_compare_yesterday
+  const lastCount = `${formatNumber(stat[period.id][period.lastCount])}`;
+  const percentageComparison = `${formatNumber(
+    stat[period.id][period.percentageComparison]
   )}%`;
 
+  const grow = count > lastCount;
+  const shrink = count < lastCount;
+  const equal = count === lastCount;
+
   return (
-    <CContainer px={2}>
+    <CContainer px={2} pb={2}>
       <P fontWeight={"bold"} fontSize={"2xl"}>
         {count}
       </P>
 
       <HStack justify={"space-between"}>
-        <P>{yesterday_count}</P>
+        <HStack>
+          <P>Last: </P>
+          <P>{lastCount}</P>
+        </HStack>
 
-        <Badge w={"fit"}>{percentage_compare_yesterday}</Badge>
+        <Badge w={"fit"} colorPalette={grow ? "green" : equal ? "gray" : "red"}>
+          {!equal && (
+            <Icon boxSize={3}>
+              {grow ? (
+                <IconArrowUp />
+              ) : shrink ? (
+                <IconArrowDown />
+              ) : (
+                <IconEqual />
+              )}
+            </Icon>
+          )}
+          {percentageComparison}
+        </Badge>
       </HStack>
     </CContainer>
   );

@@ -16,17 +16,25 @@ export const OPTIONS_DASHBOARD_PERIOD = [
   {
     id: "today",
     labelKey: "today",
+    lastCount: "yesterday_count",
+    percentageComparison: "percentage_compare_yesterday",
   },
   {
     id: "this_week",
     labelKey: "this_week",
+    lastCount: "last_week_count",
+    percentageComparison: "percentage_compare_last_week",
   },
   {
     id: "this_month",
     labelKey: "this_month",
+    lastCount: "last_month_count",
+    percentageComparison: "percentage_compare_last_month",
   },
   {
     id: "this_year",
     labelKey: "this_year",
+    lastCount: "last_year_count",
+    percentageComparison: "percentage_compare_last_year",
   },
 ];
