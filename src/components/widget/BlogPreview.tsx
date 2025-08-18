@@ -108,6 +108,7 @@ const BlogPreview = (props: Props) => {
                       {!empty(toc) &&
                         toc?.map((item) => (
                           <HStack
+                            key={`${item.id}`}
                             pos={"relative"}
                             borderLeft={"1px solid"}
                             borderColor={"p.500"}

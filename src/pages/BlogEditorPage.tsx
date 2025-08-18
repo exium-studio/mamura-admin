@@ -167,7 +167,7 @@ const Editor = (props: any) => {
           columns={[1, null, 2]}
           flex={1}
           maxH={[
-            "calc(100dvh - 50px - 80px - 80px)",
+            "calc(100dvh - 50px - 80px - 100px)",
             null,
             "calc(100dvh - 50px - 80px)",
           ]}
@@ -182,6 +182,11 @@ const Editor = (props: any) => {
             borderRight={["none", null, "1px solid {colors.border.muted}"]}
             minH={"full"}
             className="scrollY"
+            maxH={[
+              "calc(100dvh - 50px - 80px - 80px)",
+              null,
+              "calc(100dvh - 50px - 80px)",
+            ]}
           >
             <FieldRoot gap={4}>
               <Field

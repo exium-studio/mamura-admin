@@ -31,7 +31,7 @@ import {
   IconMenu,
 } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import { Checkbox } from "../ui/checkbox";
 import { Field } from "../ui/field";
@@ -219,8 +219,9 @@ const RowOptions = ({
           {rowOptions?.map((option, i) => {
             if (option === "divider") return <MenuSeparator key={i} />;
 
-            if (option?.component) return option.component(rowData);
-
+            if (option?.component) {
+              return <Fragment key={i}>{option.component(rowData)}</Fragment>;
+            }
             if (option.confirmation) {
               const disabled =
                 typeof option?.disabled === "boolean"
