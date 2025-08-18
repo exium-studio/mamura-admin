@@ -142,6 +142,19 @@ const Create = () => {
               <form id="add_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
                   <Field
+                    label={l.blog_interface.category}
+                    invalid={!!formik.errors.blog_category}
+                    errorText={formik.errors.blog_category as string}
+                  >
+                    <SelectBlogCategory
+                      onConfirm={(input) => {
+                        formik.setFieldValue("blog_category", input);
+                      }}
+                      inputValue={formik.values.blog_category}
+                    />
+                  </Field>
+
+                  <Field
                     label={l.blog_interface.thumbnail}
                     invalid={!!formik.errors.thumbnail}
                     errorText={formik.errors.thumbnail as string}
@@ -162,6 +175,7 @@ const Create = () => {
                     label={l.blog_interface.title}
                     invalid={!!formik.errors.title}
                     errorText={formik.errors.title as string}
+                    helperText={l.used_for_seo}
                   >
                     <StringInput
                       onChangeSetter={(input) => {
@@ -185,22 +199,10 @@ const Create = () => {
                   </Field>
 
                   <Field
-                    label={l.blog_interface.category}
-                    invalid={!!formik.errors.blog_category}
-                    errorText={formik.errors.blog_category as string}
-                  >
-                    <SelectBlogCategory
-                      onConfirm={(input) => {
-                        formik.setFieldValue("blog_category", input);
-                      }}
-                      inputValue={formik.values.blog_category}
-                    />
-                  </Field>
-
-                  <Field
                     label={l.blog_interface.description}
                     invalid={!!formik.errors.description}
                     errorText={formik.errors.description as string}
+                    helperText={l.used_for_seo}
                   >
                     <Textarea
                       onChangeSetter={(input) => {

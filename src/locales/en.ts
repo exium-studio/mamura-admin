@@ -516,6 +516,7 @@ const translations = {
     "imperial": "The measurement system commonly used in the United States.",
     "iso": "International standard measurement system. Based on metric."
   },
+  "used_for_seo": "Used for SEO",
   "view": "View",
   "weekdays": {
     "mon": "Monday",

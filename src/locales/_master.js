@@ -361,6 +361,10 @@ export const qualification = {
 };
 
 // UI
+export const used_for_seo = {
+  id: "Digunakan untuk SEO",
+  en: "Used for SEO",
+};
 export const deleted_thumbnail = {
   id: "Thumbnail dihapus",
   en: "Deleted thumbnail",

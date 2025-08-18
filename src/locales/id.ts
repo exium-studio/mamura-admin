@@ -516,6 +516,7 @@ const translations = {
     "imperial": "Sistem pengukuran yang umum digunakan di Amerika Serikat.",
     "iso": "Sistem pengukuran standar internasional. Berdasarkan metric."
   },
+  "used_for_seo": "Digunakan untuk SEO",
   "view": "Lihat",
   "weekdays": {
     "mon": "Senin",
