@@ -138,7 +138,7 @@ const Editor = (props: any) => {
       pt={[4, null, 0]}
       className="scrollY"
     >
-      <HStack justify={"space-between"} pb={4}>
+      <HStack justify={"space-between"} pb={4} px={[2, null, 0]}>
         <CContainer>
           <HStack>
             <Icon boxSize={5}>
@@ -146,6 +146,7 @@ const Editor = (props: any) => {
             </Icon>
             <P>{`${formatNumber(blog?.views)}`}</P>
           </HStack>
+
           <P>{`${l.last_updated}: ${formatDate(blog?.updated_at)}`}</P>
         </CContainer>
 
