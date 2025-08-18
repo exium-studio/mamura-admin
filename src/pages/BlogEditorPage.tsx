@@ -125,7 +125,7 @@ const Editor = (props: any) => {
       pt={[4, null, 0]}
       className="scrollY"
     >
-      <HStack justify={"space-between"} px={[2, null, 4]} pb={4}>
+      <HStack justify={"space-between"} pb={4}>
         <CContainer>
           <HStack>
             <Icon boxSize={5}>
