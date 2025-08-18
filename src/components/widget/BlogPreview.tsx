@@ -53,7 +53,7 @@ const BlogPreview = (props: Props) => {
 
     setToc(items);
     setHtml(doc.body.innerHTML);
-  }, []);
+  }, [blog]);
 
   return (
     <CContainer>

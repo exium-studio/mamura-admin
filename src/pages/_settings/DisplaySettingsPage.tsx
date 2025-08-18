@@ -144,7 +144,7 @@ const Theme = () => {
 
   // States, Refs
   const colorPalettes = [
-    { palette: "p", primaryHex: "#43a984" },
+    { palette: "p", primaryHex: "#1b78ca" },
 
     // Neutral & Dark Shades
     { palette: "gray", primaryHex: "#1B1B1B" },

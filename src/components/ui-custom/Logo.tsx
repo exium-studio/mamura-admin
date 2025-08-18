@@ -3,7 +3,7 @@ interface LogoProps {
   size?: number;
 }
 
-const Logo = ({ color = "#43a984", size = 24 }: LogoProps) => {
+const Logo = ({ color = "#1b78ca", size = 24 }: LogoProps) => {
   return (
     <svg
       width={size}

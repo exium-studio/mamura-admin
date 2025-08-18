@@ -26,6 +26,9 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
+import { Editor as TinyMCEEditor } from "@tinymce/tinymce-react";
+
+const TINY_MCE_API_KEY = import.meta.env.VITE_TINY_MCE_API_KEY;
 
 const Editor = (props: any) => {
   // Props
@@ -52,18 +55,20 @@ const Editor = (props: any) => {
       slug: "",
       blog_category: undefined as any,
       description: "",
+      blog_content: "",
     },
     validationSchema: yup.object().shape({
       thumbnail: fileValidation({
         maxSizeMB: 10,
         allowedExtensions: ["png", "jpeg", "jpg"],
-      }).required(l.required_form),
+      }),
       title: yup.string().required(l.required_form),
       slug: yup.string().required(l.required_form),
       blog_category: yup.array().required(l.required_form),
       description: yup.string().required(l.required_form),
+      blog_content: yup.string().required(l.required_form),
     }),
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       // console.log(values);
 
       const payload = new FormData();
@@ -74,8 +79,8 @@ const Editor = (props: any) => {
       payload.append("slug", values?.slug);
       payload.append("blog_category_id", values?.blog_category?.[0]?.id);
       payload.append("description", values?.description);
-      payload.append("blog_content", values?.description);
-      const url = `/api/mamura/admin/blog`;
+      payload.append("blog_content", values?.blog_content);
+      const url = `/api/mamura/admin/blog/${blog.id}`;
       const config = {
         url,
         method: "POST",
@@ -87,7 +92,6 @@ const Editor = (props: any) => {
         onResolve: {
           onSuccess: () => {
             setRt(!rt);
-            resetForm();
           },
         },
       });
@@ -107,10 +111,11 @@ const Editor = (props: any) => {
         },
       ],
       description: blog?.description,
+      blog_content: blog?.blog_content,
     });
 
     setExistingThumbnail(blog?.thumbnail);
-  }, []);
+  }, [blog]);
 
   return (
     <CContainer
@@ -144,7 +149,7 @@ const Editor = (props: any) => {
         </HStack>
       </HStack>
 
-      <form id="edit_form">
+      <form id="edit_form" onSubmit={formik.handleSubmit}>
         <SimpleGrid
           columns={[1, null, 2]}
           flex={1}
@@ -279,6 +284,37 @@ const Editor = (props: any) => {
                   inputValue={formik.values.description}
                 />
               </Field>
+
+              <Field
+                label={l.blog_interface.content}
+                invalid={!!formik.errors.blog_content}
+                errorText={formik.errors.blog_content as string}
+                alignItems={"stretch"}
+              >
+                <TinyMCEEditor
+                  apiKey={TINY_MCE_API_KEY}
+                  init={{
+                    height: 720,
+                    menubar: true,
+                    plugins: "lists link image table code help wordcount",
+                    toolbar:
+                      "undo redo | formatselect | bold italic backcolor | " +
+                      "alignleft aligncenter alignright alignjustify | " +
+                      "bullist numlist outdent indent | removeformat | help | " +
+                      "h1 h2 h3",
+                    style_formats: [
+                      { title: "Heading 1", format: "h1" },
+                      { title: "Heading 2", format: "h2" },
+                      { title: "Heading 3", format: "h3" },
+                    ],
+                    highlight_on_focus: false,
+                  }}
+                  value={formik.values.blog_content}
+                  onEditorChange={(content) => {
+                    formik.setFieldValue("blog_content", content);
+                  }}
+                />
+              </Field>
             </FieldRoot>
           </CContainer>
 
@@ -309,7 +345,6 @@ const BlogEditorPage = () => {
   const { blogId } = useParams();
   const { error, initialLoading, data, makeRequest } = useDataState<any>({
     url: `/api/mamura/admin/blog/${blogId}`,
-    dependencies: [],
     dataResource: false,
   });
   const render = {
