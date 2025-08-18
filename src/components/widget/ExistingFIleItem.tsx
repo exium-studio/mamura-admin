@@ -1,12 +1,11 @@
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconTrash } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 import BButton from "../ui-custom/BButton";
 import CContainer from "../ui-custom/CContainer";
 import FileIcon from "../ui-custom/FileIcon";
 import P from "../ui-custom/P";
-import { Link } from "react-router-dom";
-import formatBytes from "@/utils/formatBytes";
 
 interface Props extends StackProps {
   data: any;
@@ -56,7 +55,7 @@ const ExistingFileItem = (props: Props) => {
           <CContainer flex={1} className={"scrollY"}>
             <P lineClamp={1}>{`${data?.file_name}`}</P>
             <P fontSize={"xs"} color={"fg.muted"}>
-              {`${formatBytes(data?.file_size)}`}
+              {data?.file_size}
             </P>
           </CContainer>
         </HStack>

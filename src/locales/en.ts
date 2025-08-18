@@ -57,6 +57,7 @@ const translations = {
   "basemap": "Basemap",
   "blog_interface": {
     "thumbnail": "Thumbnail",
+    "views": "Views",
     "title": "Title",
     "slug": "Slug",
     "category": "Blog category",
@@ -127,6 +128,7 @@ const translations = {
   "delete_label": "Delete",
   "delete_status": "Delete status",
   "deleted_image": "Deleted image",
+  "deleted_thumbnail": "Deleted thumbnail",
   "description": "Description",
   "dialy": "Daily",
   "display_settings_helper_text": "These display settings are stored locally on your device and will not be synced with your account.",

@@ -353,6 +353,10 @@ export const qualification = {
 };
 
 // UI
+export const deleted_thumbnail = {
+  id: "Thumbnail dihapus",
+  en: "Deleted thumbnail",
+};
 export const deleted_image = {
   id: "Gambar dihapus",
   en: "Deleted image",
@@ -1579,6 +1583,10 @@ export const blog_interface = {
   thumbnail: {
     id: "Thumbnail",
     en: "Thumbnail",
+  },
+  views: {
+    id: "Dilihat",
+    en: "Views",
   },
   title: {
     id: "Judul",

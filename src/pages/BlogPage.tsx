@@ -34,6 +34,7 @@ import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import back from "@/utils/back";
 import empty from "@/utils/empty";
+import formatNumber from "@/utils/formatNumber";
 import slugify from "@/utils/slugify";
 import { fileValidation } from "@/utils/validationSchemas";
 import {
@@ -255,6 +256,13 @@ const TableData = (props: any) => {
       },
     },
     {
+      th: l.blog_interface.views,
+      sortable: true,
+      wrapperProps: {
+        justify: "center",
+      },
+    },
+    {
       th: l.blog_interface.title,
       sortable: true,
     },
@@ -291,6 +299,13 @@ const TableData = (props: any) => {
               />
             </Link>
           ),
+          wrapperProps: {
+            justify: "center",
+          },
+        },
+        {
+          value: item?.views,
+          td: formatNumber(item?.views),
           wrapperProps: {
             justify: "center",
           },

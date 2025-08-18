@@ -57,6 +57,7 @@ const translations = {
   "basemap": "Peta dasar",
   "blog_interface": {
     "thumbnail": "Thumbnail",
+    "views": "Dilihat",
     "title": "Judul",
     "slug": "Slug",
     "category": "Kategori blog",
@@ -127,6 +128,7 @@ const translations = {
   "delete_label": "Hapus",
   "delete_status": "Status dihapus",
   "deleted_image": "Gambar dihapus",
+  "deleted_thumbnail": "Thumbnail dihapus",
   "description": "Deskripsi",
   "dialy": "Harian",
   "display_settings_helper_text": "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",

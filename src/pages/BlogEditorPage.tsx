@@ -75,6 +75,12 @@ const Editor = (props: any) => {
       payload.append("_method", "patch");
       if (!empty(values?.thumbnail))
         payload.append("thumbnail_id[]", values?.thumbnail?.[0]);
+      if (!empty(deletedThumbnail)) {
+        payload.append(
+          "thumbnail_id[]",
+          JSON.stringify(deletedThumbnail?.map((thumbnail) => thumbnail.id))
+        );
+      }
       payload.append("title", values?.title);
       payload.append("slug", values?.slug);
       payload.append("blog_category_id", values?.blog_category?.[0]?.id);
@@ -115,6 +121,7 @@ const Editor = (props: any) => {
     });
 
     setExistingThumbnail(blog?.thumbnail);
+    setDeletedThumbnail([]);
   }, [blog]);
 
   return (
@@ -201,7 +208,7 @@ const Editor = (props: any) => {
                     dropzone
                     name="image"
                     onChangeSetter={(input) => {
-                      formik.setFieldValue("image", input);
+                      formik.setFieldValue("thumbnail", input);
                     }}
                     inputValue={formik.values.thumbnail}
                     maxFileSize={10}
@@ -211,7 +218,7 @@ const Editor = (props: any) => {
 
                 {!empty(deletedThumbnail) && (
                   <CContainer gap={2} mt={2}>
-                    <P color={"fg.muted"}>{l.deleted_image}</P>
+                    <P color={"fg.muted"}>{l.deleted_thumbnail}</P>
 
                     {deletedThumbnail?.map((item: any, i: number) => {
                       return (

@@ -268,11 +268,12 @@ const Edit = (props: any) => {
       payload.append("_method", "patch");
       if (!empty(values?.image))
         payload.append("promo_banner_id[]", values?.image?.[0]);
-      if (!empty(deletedImage))
+      if (!empty(deletedImage)) {
         payload.append(
-          "delete_banner_ids",
-          JSON.stringify(deletedImage?.[0]?.id)
+          "delete_banner_ids[]",
+          JSON.stringify(deletedImage?.map((image) => image.id))
         );
+      }
       payload.append("name", values?.name);
       payload.append("description", values?.description);
       payload.append("terms", JSON.stringify(values?.terms));
