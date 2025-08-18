@@ -55,6 +55,14 @@ const translations = {
   },
   "back_to_root": "Back to main page",
   "basemap": "Basemap",
+  "blog_interface": {
+    "thumbnail": "Thumbnail",
+    "title": "Title",
+    "slug": "Slug",
+    "category": "Blog category",
+    "description": "Description",
+    "content": "Content"
+  },
   "camera": "Camera",
   "camera_fail_toast": {
     "title": "Failed to access camera",
@@ -216,7 +224,7 @@ const translations = {
     "email": "Email"
   },
   "job_vacancy_interface": {
-    "job_category": "Job Category",
+    "job_category": "Job category",
     "employee_status": "Employee Status",
     "job_location": "Job Location",
     "qualification": "Qualification"
@@ -379,7 +387,7 @@ const translations = {
     "notifications": "Camera Test"
   },
   "pricing_interface": {
-    "category": "Category",
+    "category": "Pricing category",
     "name": "Name",
     "internet_speed": "Internet speed",
     "price": "Price",

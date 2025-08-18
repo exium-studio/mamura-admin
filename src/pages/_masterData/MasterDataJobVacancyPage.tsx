@@ -204,7 +204,7 @@ const Edit = (props: any) => {
   // Hooks
   const { l } = useLang();
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`add-job-vacancy`, open, onOpen, onClose);
+  useBackOnClose(`edit-job-vacancy`, open, onOpen, onClose);
   const { req } = useRequest({
     id: "crud_job_vacancy",
   });

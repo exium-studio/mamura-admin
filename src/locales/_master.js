@@ -1429,8 +1429,8 @@ export const trx_ths = {
 };
 export const pricing_interface = {
   category: {
-    id: "Kategori",
-    en: "Category",
+    id: "Kategori pricing",
+    en: "Pricing category",
   },
   name: {
     id: "Nama",
@@ -1547,8 +1547,8 @@ export const job_application_interface = {
 };
 export const job_vacancy_interface = {
   job_category: {
-    id: "Kategori Pekerjaan",
-    en: "Job Category",
+    id: "Kategori pekerjaan",
+    en: "Job category",
   },
   employee_status: {
     id: "Status karyawan",
@@ -1561,5 +1561,31 @@ export const job_vacancy_interface = {
   qualification: {
     id: "Kualifikasi",
     en: "Qualification",
+  },
+};
+export const blog_interface = {
+  thumbnail: {
+    id: "Thumbnail",
+    en: "Thumbnail",
+  },
+  title: {
+    id: "Judul",
+    en: "Title",
+  },
+  slug: {
+    id: "Slug",
+    en: "Slug",
+  },
+  category: {
+    id: "Kategori blog",
+    en: "Blog category",
+  },
+  description: {
+    id: "Deskripsi",
+    en: "Description",
+  },
+  content: {
+    id: "Konten",
+    en: "Content",
   },
 };

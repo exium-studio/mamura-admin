@@ -55,6 +55,14 @@ const translations = {
   },
   "back_to_root": "Kembali ke halaman utama",
   "basemap": "Peta dasar",
+  "blog_interface": {
+    "thumbnail": "Thumbnail",
+    "title": "Judul",
+    "slug": "Slug",
+    "category": "Kategori blog",
+    "description": "Deskripsi",
+    "content": "Konten"
+  },
   "camera": "Kamera",
   "camera_fail_toast": {
     "title": "Gagal mengakses kamera",
@@ -216,7 +224,7 @@ const translations = {
     "email": "Email"
   },
   "job_vacancy_interface": {
-    "job_category": "Kategori Pekerjaan",
+    "job_category": "Kategori pekerjaan",
     "employee_status": "Status karyawan",
     "job_location": "Lokasi pekerjaan",
     "qualification": "Kualifikasi"
@@ -379,7 +387,7 @@ const translations = {
     "notifications": "Tes Kamera"
   },
   "pricing_interface": {
-    "category": "Kategori",
+    "category": "Kategori pricing",
     "name": "Nama",
     "internet_speed": "Kecepatan internet",
     "price": "Harga",
