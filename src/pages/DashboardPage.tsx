@@ -37,7 +37,7 @@ const SelectPeriod = (props: any) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <BButton size={"xs"} variant={"ghost"} pr={2}>
+        <BButton unclicky size={"xs"} variant={"ghost"} pr={2}>
           {capsFirstLetter(pluck(l, period.labelKey) as string)}
 
           <Icon boxSize={4} color={"fg.subtle"}>
