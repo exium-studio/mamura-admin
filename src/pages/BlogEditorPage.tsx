@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import { Editor as TinyMCEEditor } from "@tinymce/tinymce-react";
+import slugify from "@/utils/slugify";
 
 const TINY_MCE_API_KEY = import.meta.env.VITE_TINY_MCE_API_KEY;
 
@@ -123,6 +124,11 @@ const Editor = (props: any) => {
     setExistingThumbnail(blog?.thumbnail);
     setDeletedThumbnail([]);
   }, [blog]);
+
+  // Set slug on title change
+  useEffect(() => {
+    formik.setFieldValue("slug", slugify(formik.values.title));
+  }, [formik.values.title]);
 
   return (
     <CContainer
