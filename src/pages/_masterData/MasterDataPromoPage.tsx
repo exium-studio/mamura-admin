@@ -141,6 +141,7 @@ const Create = () => {
                     label={l.promo_interface.image}
                     invalid={!!formik.errors.image}
                     errorText={formik.errors.image as string}
+                    helperText={"Aspect ratio 16:9"}
                   >
                     <FileInput
                       dropzone
@@ -332,6 +333,7 @@ const Edit = (props: any) => {
                     label={l.promo_interface.image}
                     invalid={!!formik.errors.image}
                     errorText={formik.errors.image as string}
+                    helperText={"Aspect ratio 16:9"}
                   >
                     {!empty(existingImage) && (
                       <CContainer>
