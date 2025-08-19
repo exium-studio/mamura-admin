@@ -178,8 +178,7 @@ const Editor = (props: any) => {
         >
           {/* Basic */}
           <CContainer
-            pt={4}
-            px={4}
+            p={4}
             borderRight={["none", null, "1px solid {colors.border.muted}"]}
             minH={"full"}
             className="scrollY"
