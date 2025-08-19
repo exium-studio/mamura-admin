@@ -10,7 +10,7 @@ const ItemHeaderContainer = ({
   ...props
 }: Props) => {
   return (
-    <CContainer px={3} pt={"10px"} pb={0}>
+    <CContainer p={3} pb={0}>
       <HStack
         borderBottom={"1px solid"}
         borderColor={borderless ? "transparent" : "border.muted"}
