@@ -271,7 +271,7 @@ const SelectInput = ({
           </DisclosureHeader>
 
           <DisclosureBody
-            pb={0}
+            pb={"0 !important"}
             // pt={"4 !important"}
             className="scrollY"
             // bg={"red"}
