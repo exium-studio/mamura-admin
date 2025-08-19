@@ -459,6 +459,10 @@ const TableData = (props: any) => {
   // States
   const ths = [
     {
+      th: l.job_vacancy_interface.title,
+      sortable: true,
+    },
+    {
       th: l.job_vacancy_interface.job_category,
       sortable: true,
     },
@@ -485,6 +489,10 @@ const TableData = (props: any) => {
     return {
       originalData: item,
       columnsFormat: [
+        {
+          value: item?.title,
+          td: item?.title,
+        },
         {
           value: item?.carrier_category?.name,
           td: item?.carrier_category?.name,
