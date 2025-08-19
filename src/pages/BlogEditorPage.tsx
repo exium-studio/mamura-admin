@@ -206,7 +206,7 @@ const Editor = (props: any) => {
                 label={l.blog_interface.thumbnail}
                 invalid={!!formik.errors.thumbnail}
                 errorText={formik.errors.thumbnail as string}
-                helperText={"Aspect ratio 2:1"}
+                helperText={"Aspect ratio 16:9"}
               >
                 {!empty(existingThumbnail) && (
                   <CContainer>
