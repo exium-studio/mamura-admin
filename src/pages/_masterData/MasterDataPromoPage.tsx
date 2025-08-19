@@ -52,6 +52,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 
+const BANNER_ASPECT_RATIO = `5:3`;
+
 const Create = () => {
   // Hooks
   const { l } = useLang();
@@ -141,7 +143,7 @@ const Create = () => {
                     label={l.promo_interface.image}
                     invalid={!!formik.errors.image}
                     errorText={formik.errors.image as string}
-                    helperText={"Aspect ratio 16:9"}
+                    helperText={`Aspect ratio : ${BANNER_ASPECT_RATIO}`}
                   >
                     <FileInput
                       dropzone
@@ -333,7 +335,7 @@ const Edit = (props: any) => {
                     label={l.promo_interface.image}
                     invalid={!!formik.errors.image}
                     errorText={formik.errors.image as string}
-                    helperText={"Aspect ratio 16:9"}
+                    helperText={`Aspect ratio : ${BANNER_ASPECT_RATIO}`}
                   >
                     {!empty(existingImage) && (
                       <CContainer>
