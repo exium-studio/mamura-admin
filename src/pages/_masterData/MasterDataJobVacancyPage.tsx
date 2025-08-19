@@ -17,6 +17,7 @@ import ItemContainer from "@/components/ui-custom/ItemContainer";
 import ItemHeaderContainer from "@/components/ui-custom/ItemHeaderContainer";
 import P from "@/components/ui-custom/P";
 import SearchInput from "@/components/ui-custom/SearchInput";
+import StringInput from "@/components/ui-custom/StringInput";
 import TableComponent from "@/components/ui-custom/TableComponent";
 import { Field } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
@@ -61,12 +62,14 @@ const Create = () => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
+      title: "",
       job_category: undefined as any,
       employee_status: undefined as any,
       job_location: undefined as any,
       qualifications: [],
     },
     validationSchema: yup.object().shape({
+      title: yup.string().required(l.required_form),
       job_category: yup.array().required(l.required_form),
       employee_status: yup.array().required(l.required_form),
       job_location: yup.array().required(l.required_form),
@@ -78,6 +81,7 @@ const Create = () => {
       back();
 
       const payload = {
+        title: values?.title,
         carrier_category_id: values?.job_category?.[0].id,
         employee_status_id: values?.employee_status?.[0].id,
         job_location_id: values?.employee_status?.[0].id,
@@ -126,6 +130,19 @@ const Create = () => {
             <FieldsetRoot>
               <form id="add_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
+                  <Field
+                    label={l.job_vacancy_interface.title}
+                    invalid={!!formik.errors.title}
+                    errorText={formik.errors.title as string}
+                  >
+                    <StringInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("title", input);
+                      }}
+                      inputValue={formik.values.title}
+                    />
+                  </Field>
+
                   <Field
                     label={l.job_vacancy_interface.job_category}
                     invalid={!!formik.errors.job_category}

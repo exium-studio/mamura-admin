@@ -227,6 +227,7 @@ const translations = {
     "email": "Email"
   },
   "job_vacancy_interface": {
+    "title": "Nama Pekerjaan",
     "job_category": "Kategori pekerjaan",
     "employee_status": "Status karyawan",
     "job_location": "Lokasi pekerjaan",

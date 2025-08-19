@@ -1574,6 +1574,10 @@ export const job_application_interface = {
   },
 };
 export const job_vacancy_interface = {
+  title: {
+    id: "Nama Pekerjaan",
+    en: "Job Title",
+  },
   job_category: {
     id: "Kategori pekerjaan",
     en: "Job category",

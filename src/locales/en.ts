@@ -227,6 +227,7 @@ const translations = {
     "email": "Email"
   },
   "job_vacancy_interface": {
+    "title": "Job Title",
     "job_category": "Job category",
     "employee_status": "Employee Status",
     "job_location": "Job Location",
