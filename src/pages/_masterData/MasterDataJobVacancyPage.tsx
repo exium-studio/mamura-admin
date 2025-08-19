@@ -234,12 +234,14 @@ const Edit = (props: any) => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
+      title: "",
       job_category: undefined as any,
       employee_status: undefined as any,
       job_location: undefined as any,
       qualifications: [],
     },
     validationSchema: yup.object().shape({
+      title: yup.string().required(l.required_form),
       job_category: yup.array().required(l.required_form),
       employee_status: yup.array().required(l.required_form),
       job_location: yup.array().required(l.required_form),
@@ -279,6 +281,7 @@ const Edit = (props: any) => {
   // Handle initial values
   useEffect(() => {
     formik.setValues({
+      title: initialData?.title,
       job_category: [
         {
           id: initialData?.carrier_category?.id,
@@ -319,6 +322,19 @@ const Edit = (props: any) => {
             <FieldsetRoot>
               <form id="edit_form" onSubmit={formik.handleSubmit}>
                 <FieldRoot gap={4}>
+                  <Field
+                    label={l.job_vacancy_interface.title}
+                    invalid={!!formik.errors.title}
+                    errorText={formik.errors.title as string}
+                  >
+                    <StringInput
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("title", input);
+                      }}
+                      inputValue={formik.values.title}
+                    />
+                  </Field>
+
                   <Field
                     label={l.job_vacancy_interface.job_category}
                     invalid={!!formik.errors.job_category}
@@ -374,6 +390,7 @@ const Edit = (props: any) => {
               </form>
             </FieldsetRoot>
           </DisclosureBody>
+
           <DisclosureFooter>
             <BackButton />
             <BButton
