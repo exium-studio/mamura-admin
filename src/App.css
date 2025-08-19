@@ -302,7 +302,7 @@ button {
   overflow-x: auto;
 }
 .scrollY {
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 /* WebKit (Chrome, Edge, Safari) */
 .scrollX::-webkit-scrollbar {
