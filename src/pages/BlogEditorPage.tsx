@@ -216,6 +216,7 @@ const Editor = (props: any) => {
                           key={i}
                           data={item}
                           onDelete={() => {
+                            formik.setFieldValue("thumbnail", undefined);
                             setExistingThumbnail((prev) =>
                               prev.filter((f) => f !== item)
                             );

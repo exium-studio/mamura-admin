@@ -345,6 +345,7 @@ const Edit = (props: any) => {
                               key={i}
                               data={item}
                               onDelete={() => {
+                                formik.setFieldValue("image", undefined);
                                 setExistingImage((prev) =>
                                   prev.filter((f) => f !== item)
                                 );
