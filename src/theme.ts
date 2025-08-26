@@ -1,6 +1,10 @@
 import { createSystem, defineConfig, defaultConfig } from "@chakra-ui/react";
 
 const customConfig = defineConfig({
+  // Comment on production
+  conditions: {
+    hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+  },
   globalCss: {
     "html, body": {
       bg: "body",

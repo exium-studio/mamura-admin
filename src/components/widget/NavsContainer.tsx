@@ -83,34 +83,40 @@ const NavList = (props: any) => {
 
   const NavItem = ({ nav, active }: any) => {
     return (
-      <NavItemContainer active={active} cursor={"pointer"}>
-        <FloatCounter
-          circleProps={{
-            h: "18px",
-            fontSize: "xs",
-            mt: "18px",
-            mr: "18px",
-          }}
-          display={"none"}
-        >
-          2
-        </FloatCounter>
-
-        <Icon {...nav?.iconProps}>
-          <nav.icon strokeWidth={1.5} size={iss ? 24 : 20} />
-        </Icon>
-
-        {iss && (
-          <HelperText
-            color={active ? "" : "fg.muted"}
-            lineHeight={1}
-            mt={1}
-            lineClamp={1}
+      <Tooltip
+        content={pluck(l, nav.labelKey)}
+        positioning={{ placement: "right" }}
+        contentProps={{ ml: 2 }}
+      >
+        <NavItemContainer active={active} cursor={"pointer"}>
+          <FloatCounter
+            circleProps={{
+              h: "18px",
+              fontSize: "xs",
+              mt: "18px",
+              mr: "18px",
+            }}
+            display={"none"}
           >
-            {pluck(l, nav.labelKey)}
-          </HelperText>
-        )}
-      </NavItemContainer>
+            2
+          </FloatCounter>
+
+          <Icon {...nav?.iconProps}>
+            <nav.icon strokeWidth={1.5} size={iss ? 24 : 20} />
+          </Icon>
+
+          {iss && (
+            <HelperText
+              color={active ? "" : "fg.muted"}
+              lineHeight={1}
+              mt={1}
+              lineClamp={1}
+            >
+              {pluck(l, nav.labelKey)}
+            </HelperText>
+          )}
+        </NavItemContainer>
+      </Tooltip>
     );
   };
 
@@ -147,13 +153,7 @@ const NavList = (props: any) => {
 
         return (
           <NavLink key={i} align={"center"} to={nav.path}>
-            <Tooltip
-              content={pluck(l, nav.labelKey)}
-              positioning={{ placement: "right" }}
-              contentProps={{ ml: 2 }}
-            >
-              <NavItem nav={nav} active={active} />
-            </Tooltip>
+            <NavItem nav={nav} active={active} />
           </NavLink>
         );
       })}
