@@ -2,6 +2,8 @@ import CContainer from "@/components/ui-custom/CContainer";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import getAuthToken from "@/utils/getAuthToken";
 
+const LANDING_PAGE_URL = import.meta.env.VITE_LANDING_PAGE_URL;
+
 const CMSPage = () => {
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -18,7 +20,7 @@ const CMSPage = () => {
       className={"scrollY"}
     >
       <iframe
-        src={`https://mamura.vercel.app?cms=${authToken}`}
+        src={`${LANDING_PAGE_URL}?cms=${authToken}`}
         style={{
           position: "absolute",
           top: "56px",
